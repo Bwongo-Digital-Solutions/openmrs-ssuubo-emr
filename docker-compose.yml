@@ -21,6 +21,10 @@ services:
       timeout: 5s
     depends_on:
       - backend
+    volumes:
+      - ./frontend/config-core_demo.json:/usr/share/nginx/html/config-core_demo.json:ro
+      - ./frontend/logo.png:/usr/share/nginx/html/logo.png:ro
+      - ./frontend/bwongo-logo.png:/usr/share/nginx/html/bwongo-logo.png:ro
 
   backend:
     image: openmrs/openmrs-reference-application-3-backend:${TAG:-qa}
@@ -36,10 +40,18 @@ services:
       OMRS_CONFIG_CONNECTION_USERNAME: ${OMRS_DB_USER:-openmrs}
       OMRS_CONFIG_CONNECTION_PASSWORD: ${OMRS_DB_PASSWORD:-openmrs}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/openmrs"]
-      timeout: 5s
+      test: ["CMD", "curl", "-sf", "http://localhost:8080/openmrs/health/started"]
+      interval: 30s
+      timeout: 30s
+      retries: 10
+      start_period: 3m
     volumes:
       - openmrs-data:/openmrs/data
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DISTRO_CONFIG_FILE: ${DISTRO_CONFIG_FILE:-distro.properties}
 
   # MariaDB
   db:

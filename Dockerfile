@@ -11,9 +11,23 @@ ARG MVN_ARGS="install"
 COPY pom.xml ./
 COPY distro ./distro/
 
+# Support custom distro configuration
+ARG DISTRO_CONFIG_FILE
+ENV DISTRO_CONFIG_FILE=${DISTRO_CONFIG_FILE:-"distro.properties"}
+
 ARG CACHE_BUST
 # Build the distro, but only deploy from the amd64 build
-RUN --mount=type=secret,id=m2settings,target=/usr/share/maven/ref/settings-docker.xml if [[ "$MVN_ARGS" != "deploy" || "$(arch)" = "x86_64" ]]; then mvn $MVN_ARGS_SETTINGS $MVN_ARGS; else mvn $MVN_ARGS_SETTINGS install; fi
+# Use custom distro configuration if specified
+RUN \
+    if [ -n "$DISTRO_CONFIG_FILE" ] && [ -f "distro/$DISTRO_CONFIG_FILE" ]; then \
+        echo "Using custom distro configuration: $DISTRO_CONFIG_FILE"; \
+        cp "distro/$DISTRO_CONFIG_FILE" distro/distro.properties; \
+    fi; \
+    if [[ "$MVN_ARGS" != "deploy" || "$(arch)" = "x86_64" ]]; then \
+        mvn $MVN_ARGS_SETTINGS $MVN_ARGS; \
+    else \
+        mvn $MVN_ARGS_SETTINGS install; \
+    fi
 
 RUN cp /openmrs_distro/distro/target/sdk-distro/web/openmrs_core/openmrs.war /openmrs/distribution/openmrs_core/
 

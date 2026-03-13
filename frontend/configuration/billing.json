@@ -1,0 +1,10 @@
+{
+    "@openmrs/esm-billing-app": {
+        "defaultCurrency": "UGX",
+        "country": "UG",
+        "logo": {
+            "src": "${openmrsSpaBase}/logo.png",
+            "alt": "UG"
+        }
+    }
+}
