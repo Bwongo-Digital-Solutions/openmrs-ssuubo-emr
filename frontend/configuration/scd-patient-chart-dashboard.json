@@ -1,0 +1,194 @@
+{
+    "@openmrs/esm-patient-chart-app": {
+        "extensionSlots": {
+            "patient-chart-dashboard-slot": {
+                "add": [
+                    "nav-group#HIVCareTreatment",
+                    "nav-group#SickleCellCareTreatment"
+                ],
+                "configure": {
+                    "nav-group#HIVCareTreatment": {
+                        "title": "hIVCareAndTreatment",
+                        "slotName": "hiv-care-and-treatment-group-slot",
+                        "isExpanded": true,
+                        "Display conditions": {
+                            "privilege": "View HIV Information"
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "hIVCareAndTreatment": "HIV Care And Treatment"
+                            },
+                            "fr": {
+                                "hIVCareAndTreatment": "Soins et traitement du VIH"
+                            }
+                        }
+                    },
+                    "nav-group#SickleCellCareTreatment": {
+                        "title": "sickleCellCareAndTreatment",
+                        "slotName": "sickle-cell-care-and-treatment-group-slot",
+                        "isExpanded": true,
+                        "Display conditions": {
+                            "privilege": "View Sickle Cell Information"
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "sickleCellCareAndTreatment": "Sickle Cell Care And Treatment"
+                            }
+                        }
+                    }
+                }
+            },
+            "hiv-care-and-treatment-group-slot": {
+                "add": [
+                    "dashboard#hct-patient-summary",
+                    "dashboard#hct-program-management",
+                    "dashboard#hct-clinical-visits",
+                    "dashboard#hct-general-counselling",
+                    "dashboard#hct-partner-notification"
+                ],
+                "order": [
+                    "dashboard#hct-patient-summary",
+                    "dashboard#hct-program-management",
+                    "dashboard#hct-clinical-visits",
+                    "dashboard#hct-general-counselling",
+                    "dashboard#hct-partner-notification"
+                ],
+                "configure": {
+                    "dashboard#hct-patient-summary": {
+                        "title": "patientSummary",
+                        "path": "hct-patient-summary",
+                        "slot": "hct-patient-summary-dashboard-slot",
+                        "Translation overrides": {
+                            "en": {
+                                "patientSummary": "Patient Summary"
+                            },
+                            "fr": {
+                                "patientSummary": "Résumé du patient"
+                            }
+                        }
+                    },
+                    "dashboard#hct-program-management": {
+                        "title": "programManagement",
+                        "path": "hct-program-management",
+                        "slot": "hct-program-management-dashboard-slot",
+                        "Translation overrides": {
+                            "en": {
+                                "programManagement": "Program Management"
+                            },
+                            "fr": {
+                                "programManagement": "Gestion du programme"
+                            }
+                        }
+                    },
+                    "dashboard#hct-clinical-visits": {
+                        "title": "clinicalVisits",
+                        "path": "hct-clinical-visits",
+                        "slot": "hct-clinical-visits-dashboard-slot",
+                        "Translation overrides": {
+                            "en": {
+                                "clinicalVisits": "Clinical Visits"
+                            },
+                            "fr": {
+                                "clinicalVisits": "Visites cliniques"
+                            }
+                        }
+                    },
+                    "dashboard#hct-general-counselling": {
+                        "title": "generalCounselling",
+                        "path": "hct-general-counselling",
+                        "slot": "hct-general-counselling-dashboard-slot",
+                        "Translation overrides": {
+                            "en": {
+                                "generalCounselling": "General Counselling"
+                            },
+                            "fr": {
+                                "generalCounselling": "Conseil général"
+                            }
+                        }
+                    },
+                    "dashboard#hct-partner-notification": {
+                        "title": "partnerNotification",
+                        "path": "hct-partner-notification",
+                        "slot": "hct-partner-notification-dashboard-slot",
+                        "Translation overrides": {
+                            "en": {
+                                "partnerNotification": "Partner Notification"
+                            },
+                            "fr": {
+                                "partnerNotification": "Notification des partenaires"
+                            }
+                        }
+                    }
+                }
+            },
+            "sickle-cell-care-and-treatment-group-slot": {
+                "add": [
+                    "patient-chart#scd-patient-info",
+                    "patient-vitals#scd-vitals",
+                    "patient-notes#scd-clinical-notes",
+                    "patient-medications#scd-medications",
+                    "patient-conditions#scd-conditions"
+                ],
+                "order": [
+                    "patient-chart#scd-patient-info",
+                    "patient-vitals#scd-vitals",
+                    "patient-notes#scd-clinical-notes",
+                    "patient-medications#scd-medications",
+                    "patient-conditions#scd-conditions"
+                ],
+                "configure": {
+                    "patient-chart#scd-patient-info": {
+                        "title": "patientDemographics",
+                        "path": "scd-patient-info",
+                        "description": "Patient Demographics and Contact Information",
+                        "Translation overrides": {
+                            "en": {
+                                "patientDemographics": "Patient Demographics"
+                            }
+                        }
+                    },
+                    "patient-vitals#scd-vitals": {
+                        "title": "clinicalInformation",
+                        "path": "scd-clinical-information",
+                        "description": "SCD Diagnosis Dates and Clinical Information",
+                        "Translation overrides": {
+                            "en": {
+                                "clinicalInformation": "SCD Clinical Information"
+                            }
+                        }
+                    },
+                    "patient-notes#scd-clinical-notes": {
+                        "title": "clinicalNotes",
+                        "path": "scd-clinical-notes",
+                        "description": "Clinical Visit Notes and Primary Diagnoses",
+                        "Translation overrides": {
+                            "en": {
+                                "clinicalNotes": "Clinical Notes"
+                            }
+                        }
+                    },
+                    "patient-medications#scd-medications": {
+                        "title": "treatments",
+                        "path": "scd-treatments",
+                        "description": "Hydroxyurea, Transfusion, and Physiotherapy Treatment Status",
+                        "Translation overrides": {
+                            "en": {
+                                "treatments": "Treatments"
+                            }
+                        }
+                    },
+                    "patient-conditions#scd-conditions": {
+                        "title": "siblings",
+                        "path": "scd-siblings",
+                        "description": "Family Screening and Sibling Information",
+                        "Translation overrides": {
+                            "en": {
+                                "siblings": "Siblings"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

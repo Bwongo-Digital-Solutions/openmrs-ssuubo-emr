@@ -6,11 +6,345 @@
       "action-menu-patient-chart-items-slot": {
         "order": ["order-basket-action-menu"]
       },
-      "patient-chart-summary-dashboard-slot": [
-      "@openmrs/esm-patient-allergies-app.patient-allergies-summary"
-  
-    ]
+      "patient-chart-dashboard-slot": {
+                "add": [
+                    "nav-group#SickleCellCareTreatment"
+                ],
+                "configure": {
+                    "nav-group#SickleCellCareTreatment": {
+                        "title": "sickleCellCareAndTreatment",
+                        "slotName": "sickle-cell-care-and-treatment-group-slot",
+                        "isExpanded": true,
+                        "Display conditions": {
+                            "privilege": "View Sickle Cell Information"
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "sickleCellCareAndTreatment": "Sickle Cell Care And Treatment"
+                            }
+                        }
+                    }
+                }
+            },
+            "sickle-cell-care-and-treatment-group-slot": {
+                "add": [
+                    "dashboard#scd-patient-demographics",
+                    "dashboard#scd-clinical-information",
+                    "dashboard#scd-treatments",
+                    "dashboard#scd-primary-diagnoses",
+                    "dashboard#scd-siblings"
+                ],
+                "order": [
+                    "dashboard#scd-patient-demographics",
+                    "dashboard#scd-clinical-information",
+                    "dashboard#scd-treatments",
+                    "dashboard#scd-primary-diagnoses",
+                    "dashboard#scd-siblings"
+                ],
+                "configure": {
+                    "dashboard#scd-patient-demographics": {
+                        "title": "patientDemographics",
+                        "path": "scd-patient-demographics",
+                        "slot": "scd-patient-demographics-dashboard-slot",
+                        "displayConfig": {
+                            "cardView": true,
+                            "tableView": true,
+                            "formSourceUuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9",
+                            "formPage": "Patient Demographics",
+                            "displayFields": [
+                                {
+                                    "section": "Personal Information",
+                                    "fields": [
+                                        {
+                                            "id": "isDeceased",
+                                            "label": "Is the patient deceased?"
+                                        },
+                                        {
+                                            "id": "deathDate",
+                                            "label": "Date of Death"
+                                        },
+                                        {
+                                            "id": "reasonForDeath",
+                                            "label": "Reason for Death"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "section": "Address",
+                                    "fields": [
+                                        {
+                                            "id": "address",
+                                            "label": "Address"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "section": "Contact & Other Info",
+                                    "fields": [
+                                        {
+                                            "id": "phoneNumber",
+                                            "label": "Contact Numbers"
+                                        },
+                                        {
+                                            "id": "comments",
+                                            "label": "Comments"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "patientDemographics": "Patient Demographics"
+                            }
+                        }
+                    },
+                    "dashboard#scd-clinical-information": {
+                        "title": "clinicalInformation",
+                        "path": "scd-clinical-information",
+                        "slot": "scd-clinical-information-dashboard-slot",
+                        "displayConfig": {
+                            "cardView": true,
+                            "tableView": true,
+                            "formSourceUuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9",
+                            "formPage": "SCD Clinical Information",
+                            "displayFields": [
+                                {
+                                    "section": "Diagnosis & Enrollment Dates",
+                                    "fields": [
+                                        {
+                                            "id": "scdDiagnosisDate",
+                                            "label": "Date of SCD Diagnosis"
+                                        },
+                                        {
+                                            "id": "ssuuboEnrollmentDate",
+                                            "label": "Date of SSUUBO Care Enrollment"
+                                        },
+                                        {
+                                            "id": "pcvVaccinationDate",
+                                            "label": "PCV Vaccination Date"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "clinicalInformation": "SCD Clinical Information"
+                            }
+                        }
+                    },
+                    "dashboard#scd-treatments": {
+                        "title": "treatments",
+                        "path": "scd-treatments",
+                        "slot": "scd-treatments-dashboard-slot",
+                        "displayConfig": {
+                            "cardView": true,
+                            "tableView": true,
+                            "formSourceUuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9",
+                            "formPage": "Treatments",
+                            "displayFields": [
+                                {
+                                    "section": "Hydroxyurea Treatment",
+                                    "fields": [
+                                        {
+                                            "id": "onHydroxyurea",
+                                            "label": "On Hydroxyurea Treatment?"
+                                        },
+                                        {
+                                            "id": "hydroxyureaStartDate",
+                                            "label": "Hydroxyurea Start Date"
+                                        },
+                                        {
+                                            "id": "hydroxyureaStopDate",
+                                            "label": "Hydroxyurea Stop Date"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "section": "Chronic Transfusion Programme",
+                                    "fields": [
+                                        {
+                                            "id": "onChronicTransfusion",
+                                            "label": "On Chronic Transfusion Programme?"
+                                        },
+                                        {
+                                            "id": "chronicTransfusionStartDate",
+                                            "label": "Chronic Transfusion Start Date"
+                                        },
+                                        {
+                                            "id": "chronicTransfusionStopDate",
+                                            "label": "Chronic Transfusion Stop Date"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "section": "Physiotherapy",
+                                    "fields": [
+                                        {
+                                            "id": "onPhysiotherapy",
+                                            "label": "On Physiotherapy?"
+                                        },
+                                        {
+                                            "id": "physiotherapyStartDate",
+                                            "label": "Physiotherapy Start Date"
+                                        },
+                                        {
+                                            "id": "physiotherapyStopDate",
+                                            "label": "Physiotherapy Stop Date"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "treatments": "Treatments"
+                            }
+                        }
+                    },
+                    "dashboard#scd-primary-diagnoses": {
+                        "title": "primaryDiagnoses",
+                        "path": "scd-primary-diagnoses",
+                        "slot": "scd-primary-diagnoses-dashboard-slot",
+                        "displayConfig": {
+                            "cardView": true,
+                            "tableView": true,
+                            "formSourceUuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9",
+                            "formPage": "Primary Diagnoses",
+                            "displayFields": [
+                                {
+                                    "section": "List of Primary Diagnoses",
+                                    "fields": [
+                                        {
+                                            "id": "scdNonHuDiagnosed",
+                                            "label": "SCD non-HU - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "scdNonHuDate",
+                                            "label": "SCD non-HU - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "conditionalTcdDiagnosed",
+                                            "label": "Conditional TCD - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "conditionalTcdDate",
+                                            "label": "Conditional TCD - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "abnormalTcdDiagnosed",
+                                            "label": "Abnormal TCD - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "abnormalTcdDate",
+                                            "label": "Abnormal TCD - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "strokeDiagnosed",
+                                            "label": "Stroke - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "strokeDate",
+                                            "label": "Stroke - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "splenomegalyDiagnosed",
+                                            "label": "Splenomegaly - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "splenomegalyDate",
+                                            "label": "Splenomegaly - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "chronicSequestrationDiagnosed",
+                                            "label": "Chronic Sequestration - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "chronicSequestrationDate",
+                                            "label": "Chronic Sequestration - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "osteonecrosisDiagnosed",
+                                            "label": "Osteonecrosis - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "osteonecrosisDate",
+                                            "label": "Osteonecrosis - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "otherDiagnosed",
+                                            "label": "Other Complication - Diagnosed?"
+                                        },
+                                        {
+                                            "id": "otherDate",
+                                            "label": "Other Complication - Date Diagnosed"
+                                        },
+                                        {
+                                            "id": "otherComplicationDesc",
+                                            "label": "Specify Other Complication"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "primaryDiagnoses": "Primary Diagnoses"
+                            }
+                        }
+                    },
+                    "dashboard#scd-siblings": {
+                        "title": "siblings",
+                        "path": "scd-siblings",
+                        "slot": "scd-siblings-dashboard-slot",
+                        "displayConfig": {
+                            "cardView": true,
+                            "tableView": true,
+                            "formSourceUuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9",
+                            "formPage": "Siblings",
+                            "displayFields": [
+                                {
+                                    "section": "Sibling Information",
+                                    "fields": [
+                                        {
+                                            "id": "siblingName",
+                                            "label": "Sibling Name"
+                                        },
+                                        {
+                                            "id": "siblingYearOfBirth",
+                                            "label": "Year of Birth"
+                                        },
+                                        {
+                                            "id": "siblingTested",
+                                            "label": "Tested for SCD?"
+                                        },
+                                        {
+                                            "id": "siblingTestResult",
+                                            "label": "Test Result"
+                                        },
+                                        {
+                                            "id": "siblingSsuuboNo",
+                                            "label": "SSUUBO Number"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Translation overrides": {
+                            "en": {
+                                "siblings": "Siblings"
+                            }
+                        }
+                    }
+                }
+            }
+      
+      
     },
+    "patient-chart-summary-dashboard-slot": [
+      "@openmrs/esm-patient-allergies-app.patient-allergies-summary"
+    ],
     "logo": {
       "src": "/openmrs/spa/logo.png",
       "alt": "Patient Chart Logo",
@@ -134,6 +468,14 @@
           "label": "Female"
         }
       ]
+    }
+  },
+  "@openmrs/esm-billing-app": {
+    "defaultCurrency": "UGX",
+    "country": "Uganda",
+    "logo": {
+      "src": "/openmrs/spa/billing-logo.png",
+      "alt": "UG"
     }
   }
 }
