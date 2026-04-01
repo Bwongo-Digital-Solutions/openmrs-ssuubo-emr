@@ -1,0 +1,36 @@
+{
+  "@openmrs/esm-patient-chart-app": {
+    "extensionSlots": {
+      "scd-overview-dashboard-slot": {
+        "add": [
+          "obs-widget#scd-diagnosis",
+          "obs-widget#hydroxyurea",
+          "obs-widget#stroke",
+          "obs-table#recent-labs",
+          "clinical-views-summary"
+        ],
+        "configure": {
+          "obs-widget#scd-diagnosis": {
+            "conceptUuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "SCD Diagnosis Date"
+          },
+          "obs-widget#hydroxyurea": {
+            "conceptUuid": "159394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Hydroxyurea"
+          },
+          "obs-widget#stroke": {
+            "conceptUuid": "162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Stroke"
+          },
+          "obs-table#recent-labs": {
+            "conceptUuids": [
+              "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            ],
+            "label": "Recent Labs"
+          }
+        }
+      }
+    }
+  }
+}

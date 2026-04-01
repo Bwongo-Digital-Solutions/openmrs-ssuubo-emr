@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1.3
 #--------------------------------------------
 # Dev Stage - Assembles and Builds Frontend
 #--------------------------------------------
@@ -40,6 +39,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=dev /app/spa /usr/share/nginx/html
 # COPY config-core_demo.json /usr/share/nginx/html
 COPY *.json /usr/share/nginx/html
+COPY ./configuration/*.json /usr/share/nginx/html
 # COPY ./assets /usr/share/nginx/html
 
 CMD ["/usr/local/bin/startup.sh"]

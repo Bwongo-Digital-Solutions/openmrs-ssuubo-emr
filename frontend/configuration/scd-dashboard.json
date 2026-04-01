@@ -1,19 +1,23 @@
 {
   "@openmrs/esm-patient-chart-app": {
+    "restrictByVisitLocationTag": true,
+    "showUpcomingAppointments": true,
     "extensionSlots": {
-
+      "action-menu-patient-chart-items-slot": {
+        "order": ["order-basket-action-menu"]
+      },
       "patient-chart-dashboard-slot": {
         "add": [
           "nav-group#SickleCellCareTreatment"
         ],
         "configure": {
           "nav-group#SickleCellCareTreatment": {
-            "title": "sickleCellCareAndTreatment",
+            "title": "Sickle Cell Care And Treatment",
             "slotName": "sickle-cell-care-and-treatment-group-slot",
             "isExpanded": true,
             "translationOverrides": {
               "en": {
-                "sickleCellCareAndTreatment": "Sickle Cell Care & Treatment"
+                "Sickle Cell Care And Treatment": "Sickle Cell Care & Treatment"
               }
             }
           }
@@ -42,20 +46,34 @@
         ],
 
         "configure": {
-
           "dashboard#scd-overview": {
-            "title": "scdOverview",
+            "title": "Scd Overview",
             "path": "scd-overview",
             "slot": "scd-overview-dashboard-slot",
+            "add": [
+              "obs-widget#diagnosis",
+              "obs-widget#hydroxyurea"
+            ],
+            "configure": {
+              "obs-widget#diagnosis": {
+                "conceptUuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "label": "SCD Diagnosis Date"
+              },
+              "obs-widget#hydroxyurea": {
+                "conceptUuid": "159394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "label": "Hydroxyurea"
+              }
+            },
             "translationOverrides": {
               "en": {
                 "scdOverview": "SCD Overview"
               }
             }
+            
           },
 
           "dashboard#scd-clinical-visits": {
-            "title": "clinicalVisits",
+            "title": "Clinical Visits",
             "path": "scd-clinical-visits",
             "slot": "scd-clinical-visits-dashboard-slot",
             "translationOverrides": {
@@ -66,7 +84,7 @@
           },
 
           "dashboard#scd-crisis-history": {
-            "title": "crisisHistory",
+            "title": "Crisis History",
             "path": "scd-crisis-history",
             "slot": "scd-crisis-history-dashboard-slot",
             "translationOverrides": {
@@ -77,7 +95,7 @@
           },
 
           "dashboard#scd-treatments": {
-            "title": "treatments",
+            "title": "Treatments",
             "path": "scd-treatments",
             "slot": "scd-treatment-dashboard-slot",
             "translationOverrides": {
@@ -88,7 +106,7 @@
           },
 
           "dashboard#scd-labs": {
-            "title": "labMonitoring",
+            "title": "Lab Monitoring",
             "path": "scd-labs",
             "slot": "scd-labs-dashboard-slot",
             "translationOverrides": {
@@ -99,7 +117,7 @@
           },
 
           "dashboard#scd-complications": {
-            "title": "complications",
+            "title": "Complications",
             "path": "scd-complications",
             "slot": "scd-complications-dashboard-slot",
             "translationOverrides": {
@@ -110,7 +128,7 @@
           },
 
           "dashboard#scd-family-screening": {
-            "title": "familyScreening",
+            "title": "Family Screening",
             "path": "scd-family-screening",
             "slot": "scd-family-screening-dashboard-slot",
             "translationOverrides": {
@@ -122,7 +140,44 @@
 
         }
       }
-
-    }
+      
+      
+    },
+    "patient-chart-summary-dashboard-slot": [
+      "@openmrs/esm-patient-allergies-app.patient-allergies-summary"
+    ],
+    "logo": {
+      "src": "/openmrs/spa/logo.png",
+      "alt": "Patient Chart Logo",
+      "name": "Ssubo SCD Clinic"
+    },
+    "patientSummary": {
+      "sections": [
+        "patient-allergies-header",
+        "patient-conditions-header",
+        "patient-notes-header"
+      ]
+    },
+    "clinicalViews": [
+      {
+        "id": "scd-dashboard",
+        "name": "SCD",
+        "title": "Sickle Cell Disease",
+        "slot": "scd-dashboard-slot",
+        "widgets": [
+          {
+            "id": "scd-encounters-widget",
+            "name": "SCD Consultations",
+            "encounterType": "dd528487-82a5-4082-9c72-ed246bd49591",
+            "formList": [
+              {
+                "name": "SSUUBO Sickle Cell Disease Form",
+                "uuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

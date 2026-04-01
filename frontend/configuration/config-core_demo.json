@@ -1,0 +1,330 @@
+{
+  "@openmrs/esm-patient-chart-app": {
+    "restrictByVisitLocationTag": true,
+    "showUpcomingAppointments": true,
+    "extensionSlots": {
+      "action-menu-patient-chart-items-slot": {
+        "order": ["order-basket-action-menu"]
+      },
+      "patient-chart-dashboard-slot": {
+        "add": [
+          "nav-group#SickleCellCareTreatment"
+        ],
+        "configure": {
+          "nav-group#SickleCellCareTreatment": {
+            "title": "sickleCellCareAndTreatment",
+            "slotName": "sickle-cell-care-and-treatment-group-slot",
+            "isExpanded": true,
+            "translationOverrides": {
+              "en": {
+                "sickleCellCareAndTreatment": "Sickle Cell Care & Treatment"
+              }
+            }
+          }
+        }
+      },
+
+      "sickle-cell-care-and-treatment-group-slot": {
+        "add": [
+          "dashboard#scd-overview",
+          "dashboard#scd-clinical-visits",
+          "dashboard#scd-crisis-history",
+          "dashboard#scd-treatments",
+          "dashboard#scd-labs",
+          "dashboard#scd-complications",
+          "dashboard#scd-family-screening"
+        ],
+
+        "order": [
+          "dashboard#scd-overview",
+          "dashboard#scd-clinical-visits",
+          "dashboard#scd-crisis-history",
+          "dashboard#scd-treatments",
+          "dashboard#scd-labs",
+          "dashboard#scd-complications",
+          "dashboard#scd-family-screening"
+        ],
+
+        "configure": {
+
+          "dashboard#scd-overview": {
+            "title": "Scd Overview",
+            "path": "scd-overview",
+            "slot": "scd-overview-dashboard-slot",
+            "add": [
+              "obs-widget#scd-diagnosis",
+              "obs-widget#hydroxyurea",
+              "obs-widget#stroke",
+              "obs-table#recent-labs",
+              "clinical-views-summary"
+            ],
+            "configure": {
+              "obs-widget#scd-diagnosis": {
+                "conceptUuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "label": "SCD Diagnosis Date"
+              },
+              "obs-widget#hydroxyurea": {
+                "conceptUuid": "159394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "label": "Hydroxyurea"
+              },
+              "obs-widget#stroke": {
+                "conceptUuid": "162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "label": "Stroke"
+              },
+              "obs-table#recent-labs": {
+                "conceptUuids": [
+                  "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                ],
+                "label": "Recent Labs"
+              }
+            },
+            "translationOverrides": {
+              "en": {
+                "scdOverview": "SCD Overview"
+              }
+            }
+          },
+
+          "dashboard#scd-clinical-visits": {
+            "title": "Clinical Visits",
+            "path": "scd-clinical-visits",
+            "slot": "scd-clinical-visits-dashboard-slot",
+            "translationOverrides": {
+              "en": {
+                "clinicalVisits": "Clinical Visits"
+              }
+            }
+          },
+
+          "dashboard#scd-crisis-history": {
+            "title": "Crisis History",
+            "path": "scd-crisis-history",
+            "slot": "scd-crisis-history-dashboard-slot",
+            "translationOverrides": {
+              "en": {
+                "crisisHistory": "Crisis History"
+              }
+            }
+          },
+
+          "dashboard#scd-treatments": {
+            "title": "Treatments",
+            "path": "scd-treatments",
+            "slot": "scd-treatment-dashboard-slot",
+            "translationOverrides": {
+              "en": {
+                "treatments": "Treatments"
+              }
+            }
+          },
+
+          "dashboard#scd-labs": {
+            "title": "Lab Monitoring",
+            "path": "scd-labs",
+            "slot": "scd-labs-dashboard-slot",
+            "translationOverrides": {
+              "en": {
+                "labMonitoring": "Lab Monitoring"
+              }
+            }
+          },
+
+          "dashboard#scd-complications": {
+            "title": "Complications",
+            "path": "scd-complications",
+            "slot": "scd-complications-dashboard-slot",
+            "translationOverrides": {
+              "en": {
+                "complications": "Complications"
+              }
+            }
+          },
+
+          "dashboard#scd-family-screening": {
+            "title": "Family Screening",
+            "path": "scd-family-screening",
+            "slot": "scd-family-screening-dashboard-slot",
+            "translationOverrides": {
+              "en": {
+                "familyScreening": "Family Screening"
+              }
+            }
+          }
+
+        }
+      },
+      
+      "scd-overview-dashboard-slot": {
+        "add": [
+          "obs-widget#scd-diagnosis",
+          "obs-widget#hydroxyurea",
+          "obs-widget#stroke",
+          "obs-table#recent-labs",
+          "clinical-views-summary",
+          "obs-widget#test-weight"
+        ],
+        "configure": {
+          "obs-widget#scd-diagnosis": {
+            "conceptUuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "SCD Diagnosis Date"
+          },
+          "obs-widget#hydroxyurea": {
+            "conceptUuid": "159394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Hydroxyurea"
+          },
+          "obs-widget#stroke": {
+            "conceptUuid": "162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Stroke"
+          },
+          "obs-table#recent-labs": {
+            "conceptUuids": [
+              "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            ],
+            "label": "Recent Labs"
+          },
+          "obs-widget#test-weight": {
+            "conceptUuid": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Weight (Test)"
+          }
+        }
+      }
+    },
+    "patient-chart-summary-dashboard-slot": [
+      "@openmrs/esm-patient-allergies-app.patient-allergies-summary"
+    ],
+    "logo": {
+      "src": "/openmrs/spa/logo.png",
+      "alt": "Patient Chart Logo",
+      "name": "Ssubo SCD Clinic"
+    },
+    "patientSummary": {
+      "sections": [
+        "patient-allergies-header",
+        "patient-conditions-header",
+        "patient-notes-header"
+      ]
+    },
+    "clinicalViews": [
+      {
+        "id": "scd-dashboard",
+        "name": "SCD",
+        "title": "Sickle Cell Disease",
+        "slot": "scd-dashboard-slot",
+        "widgets": [
+          {
+            "id": "scd-encounters-widget",
+            "name": "SCD Consultations",
+            "encounterType": "dd528487-82a5-4082-9c72-ed246bd49591",
+            "formList": [
+              {
+                "name": "SSUUBO Sickle Cell Disease Form",
+                "uuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "@openmrs/esm-ward-app": {
+    "extensionSlots": {
+      "action-menu-ward-patient-items-slot": {
+        "add": ["order-basket-action-menu"]
+      }
+    }
+  },
+  "@openmrs/esm-service-queues-app": {
+    "statusConfigs": [
+      {
+        "conceptUuid": "51ae5e4d-b72b-4912-bf31-a17efb690aeb",
+        "iconComponent": "InProgress"
+      },
+      {
+        "conceptUuid": "ca7494ae-437f-4fd0-8aae-b88b9a2ba47d",
+        "iconComponent": "Group"
+      },
+      {
+        "conceptUuid": "b559fb77-4e1e-4285-b9b7-1d03e0ba983f",
+        "iconComponent": "Group"
+      }
+    ],
+    "concepts": {
+      "defaultPriorityConceptUuid": "f4620bfa-3625-4883-bd3f-84c2cce14470",
+      "emergencyPriorityConceptUuid": "04f6f7e0-e3cb-4e13-a133-4479f759574e",
+      "defaultStatusConceptUuid": "51ae5e4d-b72b-4912-bf31-a17efb690aeb",
+      "defaultTransitionStatus": "ca7494ae-437f-4fd0-8aae-b88b9a2ba47d"
+    },
+    "visitQueueNumberAttributeUuid": "",
+    "defaultFacilityUrl": ""
+  },
+   "@openmrs/esm-styleguide": {
+    "Brand color #1": "#611502",
+    "Brand color #2": "#c42a04",
+    "Brand color #3": "#f23c0f"
+  },
+  "@openmrs/esm-login-app": {
+    "logo": {
+      "src": "/openmrs/spa/logo.png",
+      "alt": "Logo"
+    },
+    "footer": {
+      "additionalLogos": [
+        {
+          "src": "/openmrs/spa/bwongo-logo.png",
+          "alt": "bwongo digital solutions"
+        }
+      ]
+    }
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "logo": {
+      "src": "/openmrs/spa/logo.png",
+      "name": "clinicemr"
+    }
+  },
+  "@openmrs/esm-patient-registration-app": {
+     "sections": [
+      "demographics",
+      "contact",
+      "relationships",
+      "additionalDetails"
+    ],
+    "sectionDefinitions": [
+      {
+        "id": "demographics",
+        "name": "SCD Patient Information",
+        "fields": ["name", "id", "dob", "gender"]
+      }
+    ],
+    "fieldConfigurations": {
+      "name": {
+        "displayMiddleName": false,
+        "allowUnidentifiedPatients": true,
+        "defaultUnknownGivenName": "UNKNOWN",
+        "defaultUnknownFamilyName": "UNKNOWN",
+        "displayCapturePhoto": true,
+        "displayReverseFieldOrder": false
+      },
+      "gender": [
+        {
+          "value": "male",
+          "label": "Male"
+        },
+        {
+          "value": "female",
+          "label": "Female"
+        }
+      ]
+    }
+  },
+  "@openmrs/esm-billing-app": {
+    "defaultCurrency": "UGX",
+    "country": "Uganda",
+    "logo": {
+      "src": "/openmrs/spa/billing-logo.png",
+      "alt": "UG"
+    }
+  }
+}

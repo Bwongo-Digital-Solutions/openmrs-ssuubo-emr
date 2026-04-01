@@ -1,0 +1,91 @@
+{
+  "name": "SSUUBO Sickle Cell Disease Form",
+  "uuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9",
+  "encounterType": "dd528487-82a5-4082-9c72-ed246bd49591",
+  "fields": [
+    {
+      "label": "Diagnosis Date",
+      "concept": "SCD_DIAGNOSIS_DATE",
+      "type": "date",
+      "required": true
+    },
+    {
+      "label": "Genotype",
+      "concept": "SCD_GENOTYPE", 
+      "type": "select",
+      "options": ["HbSS", "HbSC", "HbSβ0", "HbSβ+", "HbSD", "HbSO"],
+      "required": true
+    },
+    {
+      "label": "Disease Severity",
+      "concept": "SCD_SEVERITY",
+      "type": "select",
+      "options": ["Mild", "Moderate", "Severe"],
+      "required": true
+    },
+    {
+      "label": "Treatment Status",
+      "concept": "SCD_TREATMENT_STATUS",
+      "type": "select",
+      "options": ["On Treatment", "Not on Treatment", "Lost to Follow-up"],
+      "required": true
+    },
+    {
+      "label": "Last Transfusion Date",
+      "concept": "SCD_LAST_TRANSFUSION",
+      "type": "date",
+      "required": false
+    },
+    {
+      "label": "Hydroxyurea Dose (mg/kg)",
+      "concept": "SCD_HYDROXYUREA_DOSE",
+      "type": "number",
+      "required": false
+    },
+    {
+      "label": "Crisis Episodes in Last Year",
+      "concept": "SCD_CRISIS_EPISODES",
+      "type": "number",
+      "required": true
+    },
+    {
+      "label": "Hospitalizations in Last Year",
+      "concept": "SCD_HOSPITALIZATIONS",
+      "type": "number",
+      "required": true
+    },
+    {
+      "label": "Prophylactic Antibiotics",
+      "concept": "SCD_PROPHYLAXIS",
+      "type": "select",
+      "options": ["Penicillin", "Amoxicillin", "None"],
+      "required": true
+    },
+    {
+      "label": "Immunization Status",
+      "concept": "SCD_IMMUNIZATION",
+      "type": "select",
+      "options": ["Complete", "Partial", "None"],
+      "required": true
+    },
+    {
+      "label": "Family Screening Done",
+      "concept": "SCD_FAMILY_SCREENING",
+      "type": "select",
+      "options": ["Yes", "No", "Unknown"],
+      "required": true
+    },
+    {
+      "label": "Number of Affected Siblings",
+      "concept": "SCD_AFFECTED_SIBLINGS",
+      "type": "number",
+      "required": false
+    },
+    {
+      "label": "Clinical Notes",
+      "concept": "SCD_CLINICAL_NOTES",
+      "type": "textarea",
+      "required": false
+    }
+  ]
+}
