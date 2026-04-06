@@ -429,7 +429,9 @@
    "@openmrs/esm-styleguide": {
     "Brand color #1": "#611502",
     "Brand color #2": "#c42a04",
-    "Brand color #3": "#f23c0f"
+    "Brand color #3": "#f23c0f",
+    "implementationName": "SSUUBO",
+    "pageTitle": "SSUUBO - OpenMRS"
   },
   "@openmrs/esm-login-app": {
     "logo": {
@@ -440,8 +442,9 @@
       "additionalLogos": [
         {
           "src": "/openmrs/spa/bwongo-logo.png",
-          "alt": "bwongo digital solutions"
-        }
+          "alt": "bwongo digital solutions",
+          "link": "https://bwongo.site" 
+        } 
       ]
     }
   },
