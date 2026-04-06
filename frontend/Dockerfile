@@ -12,6 +12,10 @@ COPY spa-assemble-config.json .
 COPY spa-build-config.json .
 
 ARG CACHE_BUST
+RUN npm config set fetch-timeout 300000 && \
+    npm config set fetch-retry-mintimeout 20000 && \
+    npm config set fetch-retry-maxtimeout 120000 && \
+    npm config set fetch-retries 5
 RUN mkdir -p configuration
 COPY ./configuration/*.json configuration
 RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-9.0.2} assemble --manifest --mode config --config spa-assemble-config.json --config-file configuration/*.json --target ./spa

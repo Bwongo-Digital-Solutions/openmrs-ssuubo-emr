@@ -452,6 +452,26 @@
     }
   },
   "@openmrs/esm-patient-registration-app": {
+    "fieldDefinitions": [
+      {
+        "id": "chiefComplaint",
+        "type": "obs",
+        "uuid": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "label": "Chief Complaint",
+        "validation": {
+          "required": true
+        }
+      },
+      {
+        "id": "dateOfScdDiagnosis",
+        "type": "obs",
+        "uuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "label": "Date of SCD Diagnosis",
+        "validation": {
+          "required": true
+        }
+      }
+    ],
      "sections": [
       "demographics",
       "contact",
@@ -462,7 +482,12 @@
       {
         "id": "demographics",
         "name": "SCD Patient Information",
-        "fields": ["name", "id", "dob", "gender"]
+        "fields": ["name", "id", "dob", "gender", "causeOfDeath", "dateAndTimeOfDeath"]
+      },
+      {
+        "id": "additionalDetails",
+        "name": "SCD Details",
+        "fields": [ "chiefComplaint", "dateOfScdDiagnosis"]
       }
     ],
     "fieldConfigurations": {
@@ -492,6 +517,12 @@
     "logo": {
       "src": "/openmrs/spa/billing-logo.png",
       "alt": "UG"
+    }
+  },
+  "@openmrs/esm-home-app": {
+    "defaultDashboardPerRole": {
+      "Organizational: Registration Clerk": "appointments",
+      "Organizational: Provider": "service-queues"
     }
   }
 }
