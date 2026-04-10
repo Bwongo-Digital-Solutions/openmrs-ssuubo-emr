@@ -44,6 +44,6 @@
     "@openmrs/esm-fast-data-entry-app": "1.4.1",
     "@openmrs/esm-stock-management-app": "3.2.0",
     "@openmrs/esm-form-builder-app": "3.4.1",
-    "@clinicemr/esm-patient-scd-chart": "1.2.1"
+    "@clinicemr/esm-patient-scd-chart": "1.2.2"
   }
 }
