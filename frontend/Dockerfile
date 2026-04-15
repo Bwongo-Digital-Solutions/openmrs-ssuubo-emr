@@ -1,9 +1,10 @@
+# syntax=docker/dockerfile:1.3
 #--------------------------------------------
 # Dev Stage - Assembles and Builds Frontend
 #--------------------------------------------
 FROM --platform=$BUILDPLATFORM node:22-alpine as dev
 
-ARG APP_SHELL_VERSION=9.0.2
+ARG APP_SHELL_VERSION=next
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -12,23 +13,8 @@ COPY spa-assemble-config.json .
 COPY spa-build-config.json .
 
 ARG CACHE_BUST
-RUN npm config set fetch-timeout 300000 && \
-    npm config set fetch-retry-mintimeout 20000 && \
-    npm config set fetch-retry-maxtimeout 120000 && \
-    npm config set fetch-retries 5
-RUN mkdir -p configuration
-COPY ./configuration/*.json configuration
-RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-9.0.2} assemble --manifest --mode config --config spa-assemble-config.json --config-file configuration/*.json --target ./spa
-# Install @react-aria/utils peer dependency required by @openmrs/esm-styleguide datepicker
-# Remove react/react-dom/scheduler before copying to preserve the versions already in the npx cache
-RUN mkdir -p /tmp/extra-deps && cd /tmp/extra-deps && npm init -y && \
-    npm install --legacy-peer-deps @react-aria/utils && \
-    rm -rf /tmp/extra-deps/node_modules/react \
-           /tmp/extra-deps/node_modules/react-dom \
-           /tmp/extra-deps/node_modules/scheduler && \
-    NPX_NM=$(find /root/.npm/_npx -maxdepth 2 -name node_modules -type d | head -1) && \
-    cp -r /tmp/extra-deps/node_modules/. "$NPX_NM/"
-RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-9.0.2} build --build-config spa-build-config.json --target ./spa
+RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-next} assemble --manifest --mode config --config spa-assemble-config.json --target ./spa
+RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-next} build --build-config spa-build-config.json --target ./spa
 RUN if [ ! -f ./spa/index.html ]; then echo 'Build failed. Please check the logs above for details. This may have happened because of an update to a library that OpenMRS depends on.'; exit 1; fi
 
 #--------------------------------------------
@@ -50,9 +36,6 @@ RUN chmod +x /usr/local/bin/startup.sh
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=dev /app/spa /usr/share/nginx/html
-# COPY config-core_demo.json /usr/share/nginx/html
-COPY *.json /usr/share/nginx/html
-COPY ./configuration/*.json /usr/share/nginx/html
-# COPY ./assets /usr/share/nginx/html
+COPY config-core_demo.json /usr/share/nginx/html
 
 CMD ["/usr/local/bin/startup.sh"]
