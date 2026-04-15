@@ -20,11 +20,8 @@ RUN mkdir -p configuration
 COPY ./configuration/*.json configuration
 RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-9.0.2} assemble --manifest --mode config --config spa-assemble-config.json --config-file configuration/*.json --target ./spa
 # Install @react-aria/utils peer dependency required by @openmrs/esm-styleguide datepicker
-RUN cd /root/.npm/_npx/*/node_modules/@openmrs/esm-styleguide && npm install --legacy-peer-deps @react-aria/utils 2>/dev/null || true
-
-RUN NPX_CACHE=$(find /root/.npm/_npx -maxdepth 1 -type d | tail -1) && \
-    cd "$NPX_CACHE/node_modules/@openmrs/esm-styleguide" && \
-    npm install --legacy-peer-deps @react-aria/utils
+RUN mkdir -p /tmp/extra-deps && cd /tmp/extra-deps && npm init -y && npm install @react-aria/utils
+ENV NODE_PATH=/tmp/extra-deps/node_modules
 RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-9.0.2} build --build-config spa-build-config.json --target ./spa
 RUN if [ ! -f ./spa/index.html ]; then echo 'Build failed. Please check the logs above for details. This may have happened because of an update to a library that OpenMRS depends on.'; exit 1; fi
 
