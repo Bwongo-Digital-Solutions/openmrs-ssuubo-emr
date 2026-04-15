@@ -20,7 +20,12 @@ RUN mkdir -p configuration
 COPY ./configuration/*.json configuration
 RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-9.0.2} assemble --manifest --mode config --config spa-assemble-config.json --config-file configuration/*.json --target ./spa
 # Install @react-aria/utils peer dependency required by @openmrs/esm-styleguide datepicker
-RUN mkdir -p /tmp/extra-deps && cd /tmp/extra-deps && npm init -y && npm install @react-aria/utils && \
+# Remove react/react-dom/scheduler before copying to preserve the versions already in the npx cache
+RUN mkdir -p /tmp/extra-deps && cd /tmp/extra-deps && npm init -y && \
+    npm install --legacy-peer-deps @react-aria/utils && \
+    rm -rf /tmp/extra-deps/node_modules/react \
+           /tmp/extra-deps/node_modules/react-dom \
+           /tmp/extra-deps/node_modules/scheduler && \
     NPX_NM=$(find /root/.npm/_npx -maxdepth 2 -name node_modules -type d | head -1) && \
     cp -r /tmp/extra-deps/node_modules/. "$NPX_NM/"
 RUN npx --legacy-peer-deps openmrs@${APP_SHELL_VERSION:-9.0.2} build --build-config spa-build-config.json --target ./spa
