@@ -1,0 +1,17 @@
+{
+  "name": "ssuubo-e2e-tests",
+  "version": "1.0.0",
+  "description": "End-to-end tests for SSUUBO OpenMRS SCD EMR",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:registration": "playwright test specs/patient-registration.spec.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.14.0"
+  }
+}

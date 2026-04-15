@@ -352,7 +352,7 @@
     }
   },
   "@clinicemr/esm-patient-scd-chart": {
-    "scdEncounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
+    "scdEncounterTypeUuid": "ed91dfb6-ec85-4d0b-a6a3-e5b718710c95",
     "scdLocationUuid": "2be09613-c612-41af-8638-022609c38da8",
     "conceptUuids": {
       "address": "c8ff5811-c7f1-40ef-b2eb-9adc6ed05d76",
@@ -455,42 +455,292 @@
     }
   },
   "@openmrs/esm-patient-registration-app": {
+    "registrationObs": {
+      "encounterTypeUuid": "ed91dfb6-ec85-4d0b-a6a3-e5b718710c95"
+    },
+    "freeTextFieldConceptUuid": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     "fieldDefinitions": [
       {
-        "id": "chiefComplaint",
+        "id": "testedForScd",
         "type": "obs",
-        "uuid": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "label": "Chief Complaint",
-        "validation": {
-          "required": true
-        }
+        "uuid": "a3f1b2c4-d5e6-4f78-9abc-def012345678",
+        "label": "Tested for SCD",
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
+        "validation": { "required": true }
+      },
+      {
+        "id": "scdTestResult",
+        "type": "obs",
+        "uuid": "b4e2c3d5-a6f7-4089-bcde-f12345678901",
+        "label": "Result of the SCD Test",
+        "customConceptAnswers": [
+          { "uuid": "1175AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "N/A" },
+          { "uuid": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Negative" },
+          { "uuid": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Positive" }
+        ],
+        "validation": { "required": true }
+      },
+      {
+        "id": "ssuuboNumber",
+        "type": "obs",
+        "uuid": "c5d3e4f6-b7a8-4190-cdef-012345678912",
+        "label": "SSUUBO No.",
+        "placeholder": "Enter SSUUBO number",
+        "validation": { "required": false }
       },
       {
         "id": "dateOfScdDiagnosis",
         "type": "obs",
-        "uuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "uuid": "17741003-99bd-4f74-b4d0-2c3a7c414e66",
         "label": "Date of SCD Diagnosis",
-        "validation": {
-          "required": true
-        }
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "dateOfSsuuboCareEnrollment",
+        "type": "obs",
+        "uuid": "d26d168c-005e-4154-8869-303030ab18cf",
+        "label": "Date of SSUUBO Care Enrollment",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "pcvVaccinationDate",
+        "type": "obs",
+        "uuid": "23b3670b-80b0-4ac4-9f45-30327ae0b374",
+        "label": "PCV Vaccination Date",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "hydroxyureaEnabled",
+        "type": "obs",
+        "uuid": "d92887e0-a93e-4421-9591-b79a4ec368f4",
+        "label": "Hydroxyurea Treatment",
+        "showHeading": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
+        "validation": { "required": false }
+      },
+      {
+        "id": "hydroxyureaStartDate",
+        "type": "obs",
+        "uuid": "540749c2-4a22-4c7f-811e-f1fd2e1a8f83",
+        "label": "Hydroxyurea Start Date",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "hydroxyureaStopDate",
+        "type": "obs",
+        "uuid": "7b1d3e6a-c618-461c-90a0-ec3ad6fbccf2",
+        "label": "Hydroxyurea Stop Date",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "chronicTransfusionEnabled",
+        "type": "obs",
+        "uuid": "b90f7989-b674-40e0-b0fb-e05594dad54c",
+        "label": "Chronic Transfusion Programme",
+        "showHeading": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
+        "validation": { "required": false }
+      },
+      {
+        "id": "chronicTransfusionStartDate",
+        "type": "obs",
+        "uuid": "b2652b54-82be-4096-8da5-52983b94d1f7",
+        "label": "Chronic Transfusion Start Date",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "chronicTransfusionStopDate",
+        "type": "obs",
+        "uuid": "1a5ab582-bc35-444e-beb6-fede832b3918",
+        "label": "Chronic Transfusion Stop Date",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "physiotherapyEnabled",
+        "type": "obs",
+        "uuid": "42510723-8e90-4cd9-8f64-53158a9a8710",
+        "label": "Physiotherapy",
+        "showHeading": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
+        "validation": { "required": false }
+      },
+      {
+        "id": "physiotherapyStartDate",
+        "type": "obs",
+        "uuid": "bccceb29-650b-4689-8ac7-84f2c5a73669",
+        "label": "Physiotherapy Start Date",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "physiotherapyStopDate",
+        "type": "obs",
+        "uuid": "72100e41-91b9-4f38-94b6-2d33729b7534",
+        "label": "Physiotherapy Stop Date",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisScdNonHU",
+        "type": "obs",
+        "uuid": "c9c97cab-863a-4ed9-8743-d576f38c5787",
+        "label": "SCD non-HU – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisScdOnHU",
+        "type": "obs",
+        "uuid": "2cbcab4d-6fce-4667-a8a5-229856fc0a3a",
+        "label": "SCD on HU – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisConditionalTCD",
+        "type": "obs",
+        "uuid": "31626eb8-90ce-4a1f-a750-b239a3b2ed6c",
+        "label": "Conditional TCD – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisAbnormalTCD",
+        "type": "obs",
+        "uuid": "95f516a8-4c8c-4283-8120-8dddf4d05c9c",
+        "label": "Abnormal TCD – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisStroke",
+        "type": "obs",
+        "uuid": "b0a4b1b5-0315-4101-9d11-f9de6285f8cc",
+        "label": "Stroke – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisSplenomegaly",
+        "type": "obs",
+        "uuid": "83c4a8d4-0d3f-4e7e-bc04-b7c8351c79e1",
+        "label": "Splenomegaly – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisChronicSequestration",
+        "type": "obs",
+        "uuid": "4c12e4df-9a3b-40d2-8911-ccec27598139",
+        "label": "Chronic Sequestration – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisOsteonecrosis",
+        "type": "obs",
+        "uuid": "c07169b7-359e-4aa5-aa48-c144b4c2c0ec",
+        "label": "Osteonecrosis – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisOther",
+        "type": "obs",
+        "uuid": "50fdee78-5351-45fd-8ec1-34d4004889a8",
+        "label": "Other – Diagnosed",
+        "allowFutureDates": false,
+        "allowPastDates": true,
+        "validation": { "required": false }
+      },
+      {
+        "id": "diagnosisOtherDescription",
+        "type": "obs",
+        "uuid": "088d837c-de84-4507-9956-ccef46405f63",
+        "label": "Other Complication Description",
+        "placeholder": "Describe the complication",
+        "validation": { "required": false }
       }
     ],
-     "sections": [
+    "sections": [
       "demographics",
       "contact",
-      "relationships",
-      "additionalDetails"
+      "scdScreening",
+      "scdKeyDates",
+      "scdTreatments",
+      "scdDiagnoses"
     ],
     "sectionDefinitions": [
       {
         "id": "demographics",
-        "name": "SCD Patient Information",
-        "fields": ["name", "id", "dob", "gender", "causeOfDeath", "dateAndTimeOfDeath"]
+        "name": "Patient Demographics",
+        "fields": ["name", "dob", "gender", "id"]
       },
       {
-        "id": "additionalDetails",
-        "name": "SCD Details",
-        "fields": [ "chiefComplaint", "dateOfScdDiagnosis"]
+        "id": "scdScreening",
+        "name": "SCD Screening",
+        "fields": ["testedForScd", "scdTestResult", "ssuuboNumber"]
+      },
+      {
+        "id": "scdKeyDates",
+        "name": "SCD Key Dates",
+        "fields": ["dateOfScdDiagnosis", "dateOfSsuuboCareEnrollment", "pcvVaccinationDate"]
+      },
+      {
+        "id": "scdTreatments",
+        "name": "SCD Treatments",
+        "fields": [
+          "hydroxyureaEnabled", "hydroxyureaStartDate", "hydroxyureaStopDate",
+          "chronicTransfusionEnabled", "chronicTransfusionStartDate", "chronicTransfusionStopDate",
+          "physiotherapyEnabled", "physiotherapyStartDate", "physiotherapyStopDate"
+        ]
+      },
+      {
+        "id": "scdDiagnoses",
+        "name": "Primary Diagnoses",
+        "fields": [
+          "diagnosisScdNonHU", "diagnosisScdOnHU",
+          "diagnosisConditionalTCD", "diagnosisAbnormalTCD",
+          "diagnosisStroke", "diagnosisSplenomegaly",
+          "diagnosisChronicSequestration", "diagnosisOsteonecrosis",
+          "diagnosisOther", "diagnosisOtherDescription"
+        ]
       }
     ],
     "fieldConfigurations": {
@@ -501,6 +751,14 @@
         "defaultUnknownFamilyName": "UNKNOWN",
         "displayCapturePhoto": true,
         "displayReverseFieldOrder": false
+      },
+      "dateOfBirth": {
+        "allowEstimatedDateOfBirth": true,
+        "useEstimatedDateOfBirth": {
+          "enabled": false,
+          "dayOfMonth": 0,
+          "month": 0
+        }
       },
       "gender": [
         {
