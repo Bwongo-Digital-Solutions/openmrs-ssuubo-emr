@@ -57,7 +57,7 @@
     <billing.version>2.2.0</billing.version>
     <!-- Content Packages -->
     <reference-content.version>1.4.0</reference-content.version>
-    <tendomart.github.io.version>1.0.22</tendomart.github.io.version>
+    <tendomart.github.io.version>1.0.23</tendomart.github.io.version>
     <!-- <reference-demo-content.version>1.7.0</reference-demo-content.version> -->
   </properties>
 
