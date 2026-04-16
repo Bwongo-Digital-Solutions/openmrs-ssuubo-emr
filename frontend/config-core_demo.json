@@ -456,7 +456,7 @@
   },
   "@openmrs/esm-patient-registration-app": {
     "registrationObs": {
-      "encounterTypeUuid": "ed91dfb6-ec85-4d0b-a6a3-e5b718710c95"
+      "encounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591"
     },
     "freeTextFieldConceptUuid": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     "fieldDefinitions": [

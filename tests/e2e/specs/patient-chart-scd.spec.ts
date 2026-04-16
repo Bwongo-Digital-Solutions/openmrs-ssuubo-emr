@@ -23,8 +23,8 @@ const CONCEPTS = {
   hydroxyureaGroup: '9dc5984f-7c81-4b44-b908-8e2ec9515ce7',
   chronicTransfusionGroup: 'a0137a53-8a50-4712-b554-b6858d71b875',
   physiotherapyGroup: '22f20a15-1a36-4047-a7af-28daabebd68f',
-  // Encounter type
-  registrationEncounterType: 'ed91dfb6-ec85-4d0b-a6a3-e5b718710c95',
+  // Encounter type (Consultation - used by both registration and SCD chart module)
+  encounterType: 'dd528487-82a5-4082-9c72-ed246bd49591',
   // Coded answers
   yes: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
   no: '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
@@ -39,7 +39,7 @@ async function restructureTreatmentObs(page: Page, patientUuid: string) {
   // Get the encounter UUID for this patient
   const encRes = await page.request.get(
     `/openmrs/ws/rest/v1/encounter?patient=${patientUuid}` +
-    `&encounterType=${CONCEPTS.registrationEncounterType}&limit=1&order=desc` +
+    `&encounterType=${CONCEPTS.encounterType}&limit=1&order=desc` +
     `&v=custom:(uuid)`
   );
   const encData = await encRes.json();
