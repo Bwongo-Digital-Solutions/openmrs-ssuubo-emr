@@ -30,7 +30,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   <content.io.github.tendomart.ssuubo.version>1.0.22</content.io.github.tendomart.ssuubo.version>
+   <content.io.github.tendomart.ssuubo.version>1.0.23</content.io.github.tendomart.ssuubo.version>
   </properties>
 
   <build>
