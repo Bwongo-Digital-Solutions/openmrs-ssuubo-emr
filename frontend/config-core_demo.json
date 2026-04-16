@@ -352,7 +352,7 @@
     }
   },
   "@clinicemr/esm-patient-scd-chart": {
-    "scdEncounterTypeUuid": "ed91dfb6-ec85-4d0b-a6a3-e5b718710c95",
+    "scdEncounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
     "scdLocationUuid": "2be09613-c612-41af-8638-022609c38da8",
     "conceptUuids": {
       "address": "c8ff5811-c7f1-40ef-b2eb-9adc6ed05d76",
