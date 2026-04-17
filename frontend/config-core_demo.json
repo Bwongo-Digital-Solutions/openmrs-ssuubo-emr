@@ -613,8 +613,10 @@
         "type": "obs",
         "uuid": "c9c97cab-863a-4ed9-8743-d576f38c5787",
         "label": "SCD non-HU – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -622,8 +624,10 @@
         "type": "obs",
         "uuid": "2cbcab4d-6fce-4667-a8a5-229856fc0a3a",
         "label": "SCD on HU – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -631,8 +635,10 @@
         "type": "obs",
         "uuid": "31626eb8-90ce-4a1f-a750-b239a3b2ed6c",
         "label": "Conditional TCD – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -640,8 +646,10 @@
         "type": "obs",
         "uuid": "95f516a8-4c8c-4283-8120-8dddf4d05c9c",
         "label": "Abnormal TCD – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -649,8 +657,10 @@
         "type": "obs",
         "uuid": "b0a4b1b5-0315-4101-9d11-f9de6285f8cc",
         "label": "Stroke – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -658,8 +668,10 @@
         "type": "obs",
         "uuid": "83c4a8d4-0d3f-4e7e-bc04-b7c8351c79e1",
         "label": "Splenomegaly – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -667,8 +679,10 @@
         "type": "obs",
         "uuid": "4c12e4df-9a3b-40d2-8911-ccec27598139",
         "label": "Chronic Sequestration – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -676,8 +690,10 @@
         "type": "obs",
         "uuid": "c07169b7-359e-4aa5-aa48-c144b4c2c0ec",
         "label": "Osteonecrosis – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
@@ -685,8 +701,10 @@
         "type": "obs",
         "uuid": "50fdee78-5351-45fd-8ec1-34d4004889a8",
         "label": "Other – Diagnosed",
-        "allowFutureDates": false,
-        "allowPastDates": true,
+        "customConceptAnswers": [
+          { "uuid": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+          { "uuid": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+        ],
         "validation": { "required": false }
       },
       {
