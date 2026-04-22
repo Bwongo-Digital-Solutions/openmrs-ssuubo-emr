@@ -356,9 +356,9 @@
     "scdLocationUuid": "2be09613-c612-41af-8638-022609c38da8",
     "registrationEncounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
     "emergencyContactConcepts": {
-      "parentGuardianPhone": "80692a85-465b-4fb1-917b-89a04369d418",
-      "spousePartnerPhone": "08d659f3-99ba-4c8e-ba43-48f0ea64944b",
-      "emergencyContactPhone": "8932c16f-07b9-4af8-a56e-039bf5a8b7bf"
+      "parentGuardianPhone": "768215a6-a10e-4e17-a3b9-0be0172523f5",
+      "spousePartnerPhone": "e0498b7c-108e-4195-b5d0-998f87378c9b",
+      "emergencyContactPhone": "0525140a-823b-4306-9f36-7d8099dbbf64"
     },
     "conceptUuids": {
       "address": "c8ff5811-c7f1-40ef-b2eb-9adc6ed05d76",
@@ -469,7 +469,7 @@
       {
         "id": "parentGuardianPhone",
         "type": "obs",
-        "uuid": "80692a85-465b-4fb1-917b-89a04369d418",
+        "uuid": "768215a6-a10e-4e17-a3b9-0be0172523f5",
         "label": "Parent/Guardian Phone Number",
         "placeholder": "Enter parent or guardian phone number",
         "validation": { "required": false }
@@ -477,7 +477,7 @@
       {
         "id": "spousePartnerPhone",
         "type": "obs",
-        "uuid": "08d659f3-99ba-4c8e-ba43-48f0ea64944b",
+        "uuid": "e0498b7c-108e-4195-b5d0-998f87378c9b",
         "label": "Spouse/Partner Phone Number",
         "placeholder": "Enter spouse or partner phone number",
         "validation": { "required": false }
@@ -485,7 +485,7 @@
       {
         "id": "emergencyContactPhone",
         "type": "obs",
-        "uuid": "8932c16f-07b9-4af8-a56e-039bf5a8b7bf",
+        "uuid": "0525140a-823b-4306-9f36-7d8099dbbf64",
         "label": "Emergency Contact Phone Number",
         "placeholder": "Enter emergency contact phone number",
         "validation": { "required": false }
