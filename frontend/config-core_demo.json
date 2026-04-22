@@ -533,7 +533,12 @@
           "value": "female",
           "label": "Female"
         }
-      ]
+      ],
+      "phone": {
+        "validation": {
+          "required": false
+        }
+      }
     }
   },
   "@openmrs/esm-billing-app": {
