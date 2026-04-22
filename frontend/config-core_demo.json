@@ -354,6 +354,12 @@
   "@clinicemr/esm-patient-scd-chart": {
     "scdEncounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
     "scdLocationUuid": "2be09613-c612-41af-8638-022609c38da8",
+    "registrationEncounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
+    "emergencyContactConcepts": {
+      "parentGuardianPhone": "80692a85-465b-4fb1-917b-89a04369d418",
+      "spousePartnerPhone": "08d659f3-99ba-4c8e-ba43-48f0ea64944b",
+      "emergencyContactPhone": "8932c16f-07b9-4af8-a56e-039bf5a8b7bf"
+    },
     "conceptUuids": {
       "address": "c8ff5811-c7f1-40ef-b2eb-9adc6ed05d76",
       "deathDate": "66ff3fe2-09cf-48e2-97e2-f4169ebd731c",
@@ -459,7 +465,32 @@
       "encounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591"
     },
     "freeTextFieldConceptUuid": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "fieldDefinitions": [],
+    "fieldDefinitions": [
+      {
+        "id": "parentGuardianPhone",
+        "type": "obs",
+        "uuid": "80692a85-465b-4fb1-917b-89a04369d418",
+        "label": "Parent/Guardian Phone Number",
+        "placeholder": "Enter parent or guardian phone number",
+        "validation": { "required": false }
+      },
+      {
+        "id": "spousePartnerPhone",
+        "type": "obs",
+        "uuid": "08d659f3-99ba-4c8e-ba43-48f0ea64944b",
+        "label": "Spouse/Partner Phone Number",
+        "placeholder": "Enter spouse or partner phone number",
+        "validation": { "required": false }
+      },
+      {
+        "id": "emergencyContactPhone",
+        "type": "obs",
+        "uuid": "8932c16f-07b9-4af8-a56e-039bf5a8b7bf",
+        "label": "Emergency Contact Phone Number",
+        "placeholder": "Enter emergency contact phone number",
+        "validation": { "required": false }
+      }
+    ],
     "sections": [
       "demographics",
       "contact"
@@ -469,6 +500,11 @@
         "id": "demographics",
         "name": "Patient Demographics",
         "fields": ["name", "dob", "gender", "id"]
+      },
+      {
+        "id": "contact",
+        "name": "Contact Details",
+        "fields": ["address", "phone", "parentGuardianPhone", "spousePartnerPhone", "emergencyContactPhone"]
       }
     ],
     "fieldConfigurations": {
