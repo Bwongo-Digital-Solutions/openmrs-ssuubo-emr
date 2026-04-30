@@ -22,105 +22,28 @@
 
       "sickle-cell-care-and-treatment-group-slot": {
         "add": [
-          "dashboard#scd-overview",
-          "dashboard#scd-clinical-visits",
-          "dashboard#scd-crisis-history",
-          "dashboard#scd-treatments",
-          "dashboard#scd-labs",
-          "dashboard#scd-complications",
-          "dashboard#scd-family-screening"
+          "dashboard#scd-general-info"
         ],
 
         "order": [
-          "dashboard#scd-overview",
-          "dashboard#scd-clinical-visits",
-          "dashboard#scd-crisis-history",
-          "dashboard#scd-treatments",
-          "dashboard#scd-labs",
-          "dashboard#scd-complications",
-          "dashboard#scd-family-screening"
+          "dashboard#scd-general-info"
         ],
 
         "configure": {
-
-          "dashboard#scd-overview": {
-            "title": "scdOverview",
-            "path": "scd-overview",
-            "slot": "scd-overview-dashboard-slot",
+          "dashboard#scd-general-info": {
+            "title": "generalInformation",
+            "path": "scd-general-info",
+            "slot": "scd-general-info-dashboard-slot",
             "translationOverrides": {
               "en": {
-                "scdOverview": "SCD Overview"
-              }
-            }
-          },
-
-          "dashboard#scd-clinical-visits": {
-            "title": "clinicalVisits",
-            "path": "scd-clinical-visits",
-            "slot": "scd-clinical-visits-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "clinicalVisits": "Clinical Visits"
-              }
-            }
-          },
-
-          "dashboard#scd-crisis-history": {
-            "title": "crisisHistory",
-            "path": "scd-crisis-history",
-            "slot": "scd-crisis-history-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "crisisHistory": "Crisis History"
-              }
-            }
-          },
-
-          "dashboard#scd-treatments": {
-            "title": "treatments",
-            "path": "scd-treatments",
-            "slot": "scd-treatment-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "treatments": "Treatments"
-              }
-            }
-          },
-
-          "dashboard#scd-labs": {
-            "title": "labMonitoring",
-            "path": "scd-labs",
-            "slot": "scd-labs-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "labMonitoring": "Lab Monitoring"
-              }
-            }
-          },
-
-          "dashboard#scd-complications": {
-            "title": "complications",
-            "path": "scd-complications",
-            "slot": "scd-complications-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "complications": "Complications"
-              }
-            }
-          },
-
-          "dashboard#scd-family-screening": {
-            "title": "familyScreening",
-            "path": "scd-family-screening",
-            "slot": "scd-family-screening-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "familyScreening": "Family Screening"
+                "generalInformation": "General Information"
               }
             }
           }
-
         }
+      },
+      "scd-general-info-dashboard-slot": {
+        "add": ["scd-general-info-dashboard"]
       }
 
     }

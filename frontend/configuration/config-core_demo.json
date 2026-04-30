@@ -26,169 +26,23 @@
 
       "sickle-cell-care-and-treatment-group-slot": {
         "add": [
-          "dashboard#scd-overview",
-          "dashboard#scd-clinical-visits",
-          "dashboard#scd-crisis-history",
-          "dashboard#scd-treatments",
-          "dashboard#scd-labs",
-          "dashboard#scd-complications",
-          "dashboard#scd-family-screening"
+          "dashboard#scd-general-info"
         ],
 
         "order": [
-          "dashboard#scd-overview",
-          "dashboard#scd-clinical-visits",
-          "dashboard#scd-crisis-history",
-          "dashboard#scd-treatments",
-          "dashboard#scd-labs",
-          "dashboard#scd-complications",
-          "dashboard#scd-family-screening"
+          "dashboard#scd-general-info"
         ],
 
         "configure": {
-
-          "dashboard#scd-overview": {
-            "title": "Scd Overview",
-            "path": "scd-overview",
-            "slot": "scd-overview-dashboard-slot",
-            "add": [
-              "obs-widget#scd-diagnosis",
-              "obs-widget#hydroxyurea",
-              "obs-widget#stroke",
-              "obs-table#recent-labs",
-              "clinical-views-summary"
-            ],
-            "configure": {
-              "obs-widget#scd-diagnosis": {
-                "conceptUuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "label": "SCD Diagnosis Date"
-              },
-              "obs-widget#hydroxyurea": {
-                "conceptUuid": "159394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "label": "Hydroxyurea"
-              },
-              "obs-widget#stroke": {
-                "conceptUuid": "162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "label": "Stroke"
-              },
-              "obs-table#recent-labs": {
-                "conceptUuids": [
-                  "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                  "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                ],
-                "label": "Recent Labs"
-              }
-            },
-            "translationOverrides": {
-              "en": {
-                "scdOverview": "SCD Overview"
-              }
-            }
-          },
-
-          "dashboard#scd-clinical-visits": {
-            "title": "Clinical Visits",
-            "path": "scd-clinical-visits",
-            "slot": "scd-clinical-visits-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "clinicalVisits": "Clinical Visits"
-              }
-            }
-          },
-
-          "dashboard#scd-crisis-history": {
-            "title": "Crisis History",
-            "path": "scd-crisis-history",
-            "slot": "scd-crisis-history-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "crisisHistory": "Crisis History"
-              }
-            }
-          },
-
-          "dashboard#scd-treatments": {
-            "title": "Treatments",
-            "path": "scd-treatments",
-            "slot": "scd-treatment-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "treatments": "Treatments"
-              }
-            }
-          },
-
-          "dashboard#scd-labs": {
-            "title": "Lab Monitoring",
-            "path": "scd-labs",
-            "slot": "scd-labs-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "labMonitoring": "Lab Monitoring"
-              }
-            }
-          },
-
-          "dashboard#scd-complications": {
-            "title": "Complications",
-            "path": "scd-complications",
-            "slot": "scd-complications-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "complications": "Complications"
-              }
-            }
-          },
-
-          "dashboard#scd-family-screening": {
-            "title": "Family Screening",
-            "path": "scd-family-screening",
-            "slot": "scd-family-screening-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "familyScreening": "Family Screening"
-              }
-            }
+          "dashboard#scd-general-info": {
+            "title": "General Information",
+            "path": "scd-general-info",
+            "slot": "scd-general-info-dashboard-slot"
           }
-
         }
       },
-      
-      "scd-overview-dashboard-slot": {
-        "add": [
-          "obs-widget#scd-diagnosis",
-          "obs-widget#hydroxyurea",
-          "obs-widget#stroke",
-          "obs-table#recent-labs",
-          "clinical-views-summary",
-          "obs-widget#test-weight"
-        ],
-        "configure": {
-          "obs-widget#scd-diagnosis": {
-            "conceptUuid": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "label": "SCD Diagnosis Date"
-          },
-          "obs-widget#hydroxyurea": {
-            "conceptUuid": "159394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "label": "Hydroxyurea"
-          },
-          "obs-widget#stroke": {
-            "conceptUuid": "162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "label": "Stroke"
-          },
-          "obs-table#recent-labs": {
-            "conceptUuids": [
-              "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-            ],
-            "label": "Recent Labs"
-          },
-          "obs-widget#test-weight": {
-            "conceptUuid": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "label": "Weight (Test)"
-          }
-        }
+      "scd-general-info-dashboard-slot": {
+        "add": ["scd-general-info-dashboard"]
       }
     },
     "patient-chart-summary-dashboard-slot": [
