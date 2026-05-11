@@ -63,7 +63,10 @@
     "emergencyContactConcepts": {
       "parentGuardianPhone": "768215a6-a10e-4e17-a3b9-0be0172523f5",
       "spousePartnerPhone": "e0498b7c-108e-4195-b5d0-998f87378c9b",
-      "emergencyContactPhone": "0525140a-823b-4306-9f36-7d8099dbbf64"
+      "emergencyContactPhone": "0525140a-823b-4306-9f36-7d8099dbbf64",
+      "parentGuardianName": "220fc6e1-8682-4543-8ef0-13dfb5b69d2d",
+      "spousePartnerName": "c1560ddb-2fbd-4e56-95de-a5496139030e",
+      "emergencyContactName": "68a66058-77e3-4c6f-9dda-95d25b749a70"
     },
     "conceptUuids": {
       "address": "c8ff5811-c7f1-40ef-b2eb-9adc6ed05d76",
@@ -172,6 +175,14 @@
     "freeTextFieldConceptUuid": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     "fieldDefinitions": [
       {
+        "id": "parentGuardianName",
+        "type": "obs",
+        "uuid": "220fc6e1-8682-4543-8ef0-13dfb5b69d2d",
+        "label": "Parent/Guardian Name",
+        "placeholder": "Enter parent or guardian full name",
+        "validation": { "required": false }
+      },
+      {
         "id": "parentGuardianPhone",
         "type": "obs",
         "uuid": "768215a6-a10e-4e17-a3b9-0be0172523f5",
@@ -180,11 +191,27 @@
         "validation": { "required": false }
       },
       {
+        "id": "spousePartnerName",
+        "type": "obs",
+        "uuid": "c1560ddb-2fbd-4e56-95de-a5496139030e",
+        "label": "Spouse/Partner Name",
+        "placeholder": "Enter spouse or partner full name",
+        "validation": { "required": false }
+      },
+      {
         "id": "spousePartnerPhone",
         "type": "obs",
         "uuid": "e0498b7c-108e-4195-b5d0-998f87378c9b",
         "label": "Spouse/Partner Phone Number",
         "placeholder": "Enter spouse or partner phone number",
+        "validation": { "required": false }
+      },
+      {
+        "id": "emergencyContactName",
+        "type": "obs",
+        "uuid": "68a66058-77e3-4c6f-9dda-95d25b749a70",
+        "label": "Emergency Contact Name",
+        "placeholder": "Enter emergency contact full name",
         "validation": { "required": false }
       },
       {
@@ -209,7 +236,16 @@
       {
         "id": "contact",
         "name": "Contact Details",
-        "fields": ["address", "phone", "parentGuardianPhone", "spousePartnerPhone", "emergencyContactPhone"]
+        "fields": [
+          "address",
+          "phone",
+          "parentGuardianName",
+          "parentGuardianPhone",
+          "spousePartnerName",
+          "spousePartnerPhone",
+          "emergencyContactName",
+          "emergencyContactPhone"
+        ]
       }
     ],
     "fieldConfigurations": {
