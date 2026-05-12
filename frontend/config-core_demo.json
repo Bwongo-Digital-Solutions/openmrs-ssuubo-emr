@@ -142,8 +142,8 @@
   },
    "@openmrs/esm-styleguide": {
     "Brand color #1": "#e37f0e",
-    "Brand color #2": "#c42a04",
-    "Brand color #3": "#f23c0f",
+    "Brand color #2": "#874a04",
+    "Brand color #3": "#ab5e05",
     "implementationName": "SSUUBO",
     "pageTitle": "SSUUBO - OpenMRS"
   },
