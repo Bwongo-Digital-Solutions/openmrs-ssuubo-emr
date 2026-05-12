@@ -166,7 +166,17 @@
     "logo": {
       "src": "/openmrs/spa/logo.png",
       "name": "clinicemr"
-    }
+    },
+    "externalRefLinks": [
+      {
+        "title": "OpenMRS Wiki",
+        "redirect": "https://wiki.openmrs.org/"
+      },
+      {
+        "title": "Community Forum",
+        "redirect": "https://talk.openmrs.org/"
+      }
+    ]
   },
   "@openmrs/esm-patient-registration-app": {
     "registrationObs": {
