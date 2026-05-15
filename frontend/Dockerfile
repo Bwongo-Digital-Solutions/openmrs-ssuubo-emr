@@ -38,5 +38,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=dev /app/spa /usr/share/nginx/html
 COPY config-core_demo.json /usr/share/nginx/html
 COPY logo.png /usr/share/nginx/html/logo.png
+COPY ssuubo_background.png /usr/share/nginx/html/ssuubo_background.png
 
 CMD ["/usr/local/bin/startup.sh"]

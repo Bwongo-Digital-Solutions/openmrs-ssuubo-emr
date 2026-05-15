@@ -123,6 +123,9 @@
       "src": "/openmrs/spa/logo.png",
       "alt": "Logo"
     },
+    "background": {
+      "image": "/openmrs/spa/ssuubo_background.png"
+    },
     "footer": {
       "additionalLogos": [
         {
