@@ -124,6 +124,7 @@
       "alt": "Logo"
     },
     "background": {
+      "color":"blue",
       "image": "/openmrs/spa/ssuubo_background.png"
     },
     "footer": {
