@@ -749,6 +749,7 @@ run_build_in_background() {
     echo "$description" > "$BUILD_LOG_DIR/build.description"
     
     (
+        set +e
         eval "$build_cmd" >> "$BUILD_LOG_FILE" 2>&1
         local exit_code=$?
         if [ $exit_code -eq 0 ]; then
