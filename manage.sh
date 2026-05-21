@@ -341,16 +341,18 @@ show_interactive_menu() {
         echo "│ 17) Build Custom Image        18) Build Without Cache       │"
         echo "│ 19) Build with Distro Config 20) Push to Docker Hub          │"
         echo "│ 21) Rebuild Frontend Config 22) Copy Frontend Assets         │"
+        echo "│ 23) Build in Background      24) Build Status                │"
+        echo "│ 25) Build Log                26) Cancel Background Build     │"
         echo "└─────────────────────────────────────────────────────────────┘"
         echo
         echo "┌─────────────────────────────────────────────────────────────┐"
         echo "│                      UTILITIES                               │"
         echo "├─────────────────────────────────────────────────────────────┤"
-        echo "│ 23) Start with Grafana         24) Full Cleanup               │"
-        echo "│ 25) Show Help                  26) Exit                        │"
+        echo "│ 27) Start with Grafana         28) Full Cleanup               │"
+        echo "│ 29) Show Help                  30) Exit                        │"
         echo "└─────────────────────────────────────────────────────────────┘"
         echo
-        echo -n "Enter option number [1-26]: "
+        echo -n "Enter option number [1-30]: "
         read -r choice
         
         # Clear any extra whitespace and validate input
@@ -379,11 +381,15 @@ show_interactive_menu() {
             20) push_to_docker_hub; pause ;;
             21) rebuild_frontend_config; pause ;;
             22) copy_frontend_assets; pause ;;
-            23) start_with_grafana; pause ;;
-            24) cleanup; pause ;;
-            25) show_help; pause ;;
-            26) print_status "Goodbye!"; exit 0 ;;
-            *) print_error "Invalid option '$choice'. Please enter a number between 1-26."; pause ;;
+            23) build_background; pause ;;
+            24) build_status; pause ;;
+            25) build_log; pause ;;
+            26) build_cancel; pause ;;
+            27) start_with_grafana; pause ;;
+            28) cleanup; pause ;;
+            29) show_help; pause ;;
+            30) print_status "Goodbye!"; exit 0 ;;
+            *) print_error "Invalid option '$choice'. Please enter a number between 1-30."; pause ;;
         esac
     done
 }
@@ -713,6 +719,208 @@ setup_ssl_prod_interactive() {
     setup_ssl_prod
 }
 
+# Background build directory
+BUILD_LOG_DIR=".build"
+BUILD_PID_FILE="$BUILD_LOG_DIR/build.pid"
+BUILD_LOG_FILE="$BUILD_LOG_DIR/build.log"
+BUILD_STATUS_FILE="$BUILD_LOG_DIR/build.status"
+
+# Function to run a build in the background
+run_build_in_background() {
+    local build_cmd="$1"
+    local description="$2"
+    
+    mkdir -p "$BUILD_LOG_DIR"
+    
+    # Check if a build is already running
+    if [ -f "$BUILD_PID_FILE" ]; then
+        local existing_pid=$(cat "$BUILD_PID_FILE")
+        if kill -0 "$existing_pid" 2>/dev/null; then
+            print_error "A build is already running (PID: $existing_pid)"
+            print_status "Use './manage.sh build-status' to check progress or './manage.sh build-cancel' to cancel it"
+            return 1
+        fi
+    fi
+    
+    # Start the build in background
+    print_status "Starting background build: $description"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Starting: $description" > "$BUILD_LOG_FILE"
+    echo "running" > "$BUILD_STATUS_FILE"
+    echo "$description" > "$BUILD_LOG_DIR/build.description"
+    
+    (
+        eval "$build_cmd" >> "$BUILD_LOG_FILE" 2>&1
+        local exit_code=$?
+        if [ $exit_code -eq 0 ]; then
+            echo "success" > "$BUILD_STATUS_FILE"
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] Build completed successfully" >> "$BUILD_LOG_FILE"
+        else
+            echo "failed" > "$BUILD_STATUS_FILE"
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] Build FAILED (exit code: $exit_code)" >> "$BUILD_LOG_FILE"
+        fi
+        rm -f "$BUILD_PID_FILE"
+    ) &
+    
+    local build_pid=$!
+    echo "$build_pid" > "$BUILD_PID_FILE"
+    
+    print_status "Build running in background (PID: $build_pid)"
+    print_status "Log file: $BUILD_LOG_FILE"
+    print_status "Check status: ./manage.sh build-status"
+    print_status "View logs:    ./manage.sh build-log"
+    print_status "Cancel:       ./manage.sh build-cancel"
+}
+
+# Function to build in background
+build_background() {
+    print_header "Background Build"
+    check_docker
+    check_docker_compose
+    
+    local compose_cmd=$(get_docker_compose_cmd)
+    
+    echo "┌─────────────────────────────────────────────────────────────┐"
+    echo "│                 SELECT SERVICE TO BUILD                       │"
+    echo "├─────────────────────────────────────────────────────────────┤"
+    echo "│  1) backend                   2) frontend                     │"
+    echo "│  3) gateway                   4) All services                 │"
+    echo "│  5) backend (no cache)        6) All (no cache)              │"
+    echo "└─────────────────────────────────────────────────────────────┘"
+    echo
+    echo -n "Enter option number [1-6]: "
+    read -r choice
+    
+    choice=$(echo "$choice" | tr -d ' ')
+    
+    local build_cmd=""
+    local description=""
+    
+    case $choice in
+        1)
+            build_cmd="$compose_cmd build backend"
+            description="Build backend"
+            ;;
+        2)
+            build_cmd="$compose_cmd build frontend"
+            description="Build frontend"
+            ;;
+        3)
+            build_cmd="$compose_cmd build gateway"
+            description="Build gateway"
+            ;;
+        4)
+            build_cmd="$compose_cmd build"
+            description="Build all services"
+            ;;
+        5)
+            build_cmd="$compose_cmd build --no-cache backend"
+            description="Build backend (no cache)"
+            ;;
+        6)
+            build_cmd="$compose_cmd build --no-cache"
+            description="Build all services (no cache)"
+            ;;
+        *)
+            print_error "Invalid option '$choice'. Please enter a number between 1-6."
+            return
+            ;;
+    esac
+    
+    run_build_in_background "$build_cmd" "$description"
+}
+
+# Function to check background build status
+build_status() {
+    print_header "Background Build Status"
+    
+    if [ ! -d "$BUILD_LOG_DIR" ]; then
+        print_status "No builds have been run yet"
+        return
+    fi
+    
+    if [ -f "$BUILD_LOG_DIR/build.description" ]; then
+        local description=$(cat "$BUILD_LOG_DIR/build.description")
+        print_status "Build: $description"
+    fi
+    
+    if [ -f "$BUILD_STATUS_FILE" ]; then
+        local status=$(cat "$BUILD_STATUS_FILE")
+        case $status in
+            running)
+                if [ -f "$BUILD_PID_FILE" ]; then
+                    local pid=$(cat "$BUILD_PID_FILE")
+                    if kill -0 "$pid" 2>/dev/null; then
+                        echo -e "${YELLOW}Status: RUNNING${NC} (PID: $pid)"
+                        echo
+                        print_status "Last 5 lines of build log:"
+                        tail -5 "$BUILD_LOG_FILE" 2>/dev/null
+                    else
+                        echo -e "${RED}Status: DIED${NC} (process no longer running)"
+                        echo "failed" > "$BUILD_STATUS_FILE"
+                        rm -f "$BUILD_PID_FILE"
+                    fi
+                fi
+                ;;
+            success)
+                echo -e "${GREEN}Status: SUCCESS${NC}"
+                echo
+                print_status "Last 3 lines of build log:"
+                tail -3 "$BUILD_LOG_FILE" 2>/dev/null
+                ;;
+            failed)
+                echo -e "${RED}Status: FAILED${NC}"
+                echo
+                print_status "Last 10 lines of build log:"
+                tail -10 "$BUILD_LOG_FILE" 2>/dev/null
+                ;;
+        esac
+    else
+        print_status "No build status available"
+    fi
+}
+
+# Function to view background build log
+build_log() {
+    local follow=${1:-false}
+    
+    if [ ! -f "$BUILD_LOG_FILE" ]; then
+        print_error "No build log found. Run a background build first."
+        return
+    fi
+    
+    if [ "$follow" = "true" ] || [ "$follow" = "-f" ]; then
+        print_status "Following build log (Ctrl+C to stop)..."
+        tail -f "$BUILD_LOG_FILE"
+    else
+        print_status "Build log contents:"
+        cat "$BUILD_LOG_FILE"
+    fi
+}
+
+# Function to cancel a running background build
+build_cancel() {
+    print_header "Cancel Background Build"
+    
+    if [ ! -f "$BUILD_PID_FILE" ]; then
+        print_status "No background build is currently running"
+        return
+    fi
+    
+    local pid=$(cat "$BUILD_PID_FILE")
+    
+    if kill -0 "$pid" 2>/dev/null; then
+        print_warning "Cancelling build (PID: $pid)..."
+        kill -- -"$pid" 2>/dev/null || kill "$pid" 2>/dev/null
+        echo "cancelled" > "$BUILD_STATUS_FILE"
+        rm -f "$BUILD_PID_FILE"
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] Build CANCELLED by user" >> "$BUILD_LOG_FILE"
+        print_status "Build cancelled"
+    else
+        print_status "Build process already finished"
+        rm -f "$BUILD_PID_FILE"
+    fi
+}
+
 # Function to build custom image
 build_custom_image() {
     print_header "Build Custom Docker Image"
@@ -1015,6 +1223,10 @@ show_help() {
     echo "  build-image        Build custom Docker image"
     echo "  build-no-cache     Build without cache"
     echo "  build-distro       Build and start with custom distro configuration"
+    echo "  build-bg           Build in background (non-blocking)"
+    echo "  build-status       Check background build status"
+    echo "  build-log [-f]     View background build log (-f to follow)"
+    echo "  build-cancel       Cancel a running background build"
     echo "  push               Push image to Docker Hub"
     echo "  rebuild-frontend   Rebuild frontend configurations"
     echo "  copy-assets        Copy frontend assets to container without rebuilding"
@@ -1110,6 +1322,18 @@ case "${1:-help}" in
         ;;
     copy-assets)
         copy_frontend_assets
+        ;;
+    build-bg)
+        build_background
+        ;;
+    build-status)
+        build_status
+        ;;
+    build-log)
+        build_log "$2"
+        ;;
+    build-cancel)
+        build_cancel
         ;;
     help|--help|-h)
         show_help
