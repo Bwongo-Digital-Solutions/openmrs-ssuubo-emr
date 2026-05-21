@@ -56,6 +56,7 @@
     <!-- Stock Management and Billing -->
     <stockmanagement.version>3.0.0</stockmanagement.version>
     <billing.version>2.2.0</billing.version>
+    <tasks.version>1.0.0-SNAPSHOT</tasks.version>
     <!-- Content Packages -->
     <reference-content.version>1.4.0</reference-content.version>
     <tendomart.github.io.version>1.0.23</tendomart.github.io.version>
@@ -238,6 +239,12 @@
       <groupId>org.openmrs.module</groupId>
       <artifactId>billing-omod</artifactId>
       <version>${billing.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>tasks-omod</artifactId>
+      <version>${tasks.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
