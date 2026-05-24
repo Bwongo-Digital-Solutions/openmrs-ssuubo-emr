@@ -8,36 +8,22 @@
       },
       "patient-chart-dashboard-slot": {
         "add": [
-          "nav-group#SickleCellCareTreatment"
-        ],
-        "configure": {
-          "nav-group#SickleCellCareTreatment": {
-            "title": "Sickle Cell Care And Treatment",
-            "slotName": "sickle-cell-care-and-treatment-group-slot",
-            "isExpanded": true,
-            "translationOverrides": {
-              "en": {
-                "Sickle Cell Care And Treatment": "Sickle Cell Care & Treatment"
-              }
-            }
-          }
-        }
-      },
-
-      "sickle-cell-care-and-treatment-group-slot": {
-        "add": [
           "dashboard#scd-general-info"
         ],
-
         "order": [
-          "dashboard#scd-general-info"
+          "dashboard#scd-general-info",
+          "charts-summary-dashboard"
         ],
-
         "configure": {
           "dashboard#scd-general-info": {
-            "title": "General Information",
+            "title": "generalInformation",
             "path": "scd-general-info",
-            "slot": "scd-general-info-dashboard-slot"
+            "slot": "scd-general-info-dashboard-slot",
+            "translationOverrides": {
+              "en": {
+                "generalInformation": "SCD Patient Info"
+              }
+            }
           }
         }
       },
