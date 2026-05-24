@@ -46,6 +46,5 @@
     "@openmrs/esm-ward-app": "next",
     "@clinicemr/esm-patient-scd-chart": "1.3.3",
     "@clinicemr/esm-post-registration-redirect-app": "1.2.0"
-  },
-  "excludedFrontendModules": []
+  }
 }
