@@ -1,4 +1,5 @@
 {
+  "coreVersion": "9.0.2",
   "frontendModules": {
     "@openmrs/esm-active-visits-app": "next",
     "@openmrs/esm-appointments-app": "next",
@@ -41,11 +42,9 @@
     "@openmrs/esm-service-queues-app": "next",
     "@openmrs/esm-stock-management-app": "next",
     "@openmrs/esm-system-admin-app": "next",
-    "@openmrs/esm-task-list-app": "next",
     "@openmrs/esm-user-onboarding-app": "next",
     "@openmrs/esm-ward-app": "next",
     "@clinicemr/esm-patient-scd-chart": "1.3.3",
     "@clinicemr/esm-post-registration-redirect-app": "1.2.0"
-  },
-  "excludedFrontendModules": []
+  }
 }

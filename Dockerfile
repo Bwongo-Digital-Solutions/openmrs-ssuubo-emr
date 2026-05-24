@@ -4,8 +4,8 @@
 FROM openmrs/openmrs-core:2.8.x-dev-amazoncorretto-21 AS dev
 WORKDIR /openmrs_distro
 
-ARG MVN_ARGS_SETTINGS="-s /usr/share/maven/ref/settings-docker.xml -U -P distro"
-ARG MVN_ARGS="install"
+ARG MVN_ARGS="-s /usr/share/maven/ref/settings-docker.xml -U -P distro"
+ARG MVN_COMMAND="install"
 
 # Copy build files
 COPY pom.xml ./
@@ -37,7 +37,7 @@ RUN cp -R /openmrs_distro/distro/target/sdk-distro/web/openmrs_owas /openmrs/dis
 RUN cp -R /openmrs_distro/distro/target/sdk-distro/web/openmrs_config /openmrs/distribution/openmrs_config/
 
 # Clean up after copying needed artifacts
-RUN mvn $MVN_ARGS_SETTINGS clean
+RUN mvn $MVN_ARGS clean
 
 ### Run Stage
 # Replace '2.7.x' with the exact version of openmrs-core built for production (if available)
