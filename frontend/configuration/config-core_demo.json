@@ -11,7 +11,8 @@
           "dashboard#scd-general-info"
         ],
         "order": [
-          "dashboard#scd-general-info"
+          "dashboard#scd-general-info",
+          "charts-summary-dashboard"
         ],
         "configure": {
           "dashboard#scd-general-info": {
