@@ -16,14 +16,9 @@
         ],
         "configure": {
           "dashboard#scd-general-info": {
-            "title": "generalInformation",
-            "path": "scd-general-info",
-            "slot": "scd-general-info-dashboard-slot",
-            "translationOverrides": {
-              "en": {
-                "generalInformation": "SCD Patient Info"
-              }
-            }
+            "title": "SCD General Info",
+            "path": "SCD General Info",
+            "slot": "scd-general-info-dashboard-slot"
           }
         }
       },
