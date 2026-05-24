@@ -7,23 +7,10 @@
         "order": ["order-basket-action-menu"]
       },
       "patient-chart-dashboard-slot": {
-        "add": [
-          "dashboard#scd-general-info"
-        ],
         "order": [
-          "dashboard#scd-general-info",
+          "scd-summary-dashboard",
           "charts-summary-dashboard"
-        ],
-        "configure": {
-          "dashboard#scd-general-info": {
-            "title": "SCD General Info",
-            "path": "SCD General Info",
-            "slot": "scd-general-info-dashboard-slot"
-          }
-        }
-      },
-      "scd-general-info-dashboard-slot": {
-        "add": ["scd-general-info-dashboard"]
+        ]
       },
       "patient-chart-summary-dashboard-slot": {
         "add": [
