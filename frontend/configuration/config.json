@@ -49,97 +49,26 @@
       ],
       "patient-chart-dashboard-slot": {
         "add": [
-          "nav-group#SickleCellCareTreatment"
+          "dashboard#scd-general-info"
+        ],
+        "order": [
+          "dashboard#scd-general-info"
         ],
         "configure": {
-          "nav-group#SickleCellCareTreatment": {
-            "title": "sickleCellCareAndTreatment",
-            "slotName": "sickle-cell-care-and-treatment-group-slot",
-            "isExpanded": true,
-            "Translation overrides": {
+          "dashboard#scd-general-info": {
+            "title": "generalInformation",
+            "path": "scd-general-info",
+            "slot": "scd-general-info-dashboard-slot",
+            "translationOverrides": {
               "en": {
-                "sickleCellCareAndTreatment": "Sickle Cell Care And Treatment"
+                "generalInformation": "SCD General Info"
               }
             }
           }
         }
       },
-      "sickle-cell-care-and-treatment-group-slot": {
-        "add": [
-          "scd-form-summary-widget",
-          "patient-chart#scd-patient-info",
-          "patient-vitals#scd-vitals", 
-          "patient-notes#scd-clinical-notes",
-          "patient-medications#scd-medications",
-          "patient-conditions#scd-conditions"
-        ],
-        "order": [
-          "scd-form-summary-widget",
-          "patient-chart#scd-patient-info",
-          "patient-vitals#scd-vitals",
-          "patient-notes#scd-clinical-notes", 
-          "patient-medications#scd-medications",
-          "patient-conditions#scd-conditions"
-        ],
-        "configure": {
-          "scd-form-summary-widget": {
-            "title": "sickleCellFormSummary",
-            "description": "Summary of SSUUBO Sickle Cell Disease Form data",
-            "component": "obs-summary-widget",
-            "config": {
-              "formUuid": "3f2a1b4c-7d8e-4f9a-b2c3-d4e5f6a7b8c9",
-              "encounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
-              "concepts": [
-                "SCD_DIAGNOSIS_DATE",
-                "SCD_GENOTYPE", 
-                "SCD_SEVERITY",
-                "SCD_TREATMENT_STATUS",
-                "SCD_LAST_TRANSFUSION",
-                "SCD_HYDROXYUREA_DOSE",
-                "SCD_CRISIS_EPISODES",
-                "SCD_HOSPITALIZATIONS",
-                "SCD_PROPHYLAXIS",
-                "SCD_IMMUNIZATION",
-                "SCD_FAMILY_SCREENING",
-                "SCD_AFFECTED_SIBLINGS",
-                "SCD_CLINICAL_NOTES"
-              ],
-              "displayConcepts": [
-                {
-                  "concept": "SCD_DIAGNOSIS_DATE",
-                  "label": "Diagnosis Date",
-                  "format": "date"
-                },
-                {
-                  "concept": "SCD_GENOTYPE",
-                  "label": "Genotype"
-                },
-                {
-                  "concept": "SCD_SEVERITY", 
-                  "label": "Severity"
-                },
-                {
-                  "concept": "SCD_TREATMENT_STATUS",
-                  "label": "Treatment Status"
-                },
-                {
-                  "concept": "SCD_HYDROXYUREA_DOSE",
-                  "label": "Hydroxyurea Dose",
-                  "format": "number"
-                },
-                {
-                  "concept": "SCD_CRISIS_EPISODES",
-                  "label": "Crisis Episodes (Last Year)",
-                  "format": "number"
-                },
-                {
-                  "concept": "SCD_FAMILY_SCREENING",
-                  "label": "Family Screening"
-                }
-              ]
-            }
-          }
-        }
+      "scd-general-info-dashboard-slot": {
+        "add": ["scd-general-info-dashboard"]
       }
     },
     "logo": {
