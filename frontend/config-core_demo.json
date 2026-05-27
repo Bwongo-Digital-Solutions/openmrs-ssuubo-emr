@@ -120,6 +120,9 @@
       "src": "/openmrs/spa/logo.png",
       "alt": "Logo"
     },
+    "background": {
+      "image": "/openmrs/spa/background-image.png"
+    },
     "footer": {
       "additionalLogos": [
         {
