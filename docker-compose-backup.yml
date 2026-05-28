@@ -6,7 +6,7 @@ services:
         condition: service_healthy
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ${BACKUP_PATH:-./openmrs_backup}:/restic_data
+      - ${BACKUP_PATH:-./openmrs_backup}:/backup
       - restic-cache:/cache
     environment:
       RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
