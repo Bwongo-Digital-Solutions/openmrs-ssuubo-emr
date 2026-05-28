@@ -1232,6 +1232,10 @@ show_help() {
     echo "  rebuild-frontend   Rebuild frontend configurations"
     echo "  copy-assets        Copy frontend assets to container without rebuilding"
     echo
+    echo "Backup and Restore:"
+    echo "  Use ./backup-restore.sh for backup and restore operations"
+    echo "  See README.md for backup documentation"
+    echo
     echo "Interactive Mode:"
     echo "  Run './manage.sh interactive' to launch the interactive console"
     echo "  The console provides a user-friendly menu for all operations"

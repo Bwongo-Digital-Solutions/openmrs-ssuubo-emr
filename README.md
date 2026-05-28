@@ -230,6 +230,195 @@ docker compose up
 
 The certbot entrypoint skips certificate generation when it finds existing certificates for the configured domain. Removing the volume forces it to go through the full setup process again.
 
+## Backup and Restore
+
+This distribution includes automated backup and restore functionality using Restic. The backup system can back up both the MariaDB database and Docker volumes to a variety of storage backends (local filesystem, S3, SFTP, etc.).
+
+### Setup
+
+1. Copy the backup environment template to `.env`:
+
+```bash
+cp .env.backup .env
+```
+
+2. Edit `.env` and configure the required variables:
+
+```env
+# Restic repository location (choose one backend type)
+# Local filesystem:
+RESTIC_REPOSITORY=/path/to/backup/repository
+# S3:
+RESTIC_REPOSITORY=s3:s3.amazonaws.com/bucket-name
+# SFTP:
+RESTIC_REPOSITORY=sftp:user@host:/path/to/repo
+# Rest server:
+RESTIC_REPOSITORY=rest:http://host:8000
+
+# Password to encrypt/decrypt the backup repository
+# IMPORTANT: Store this securely! You cannot restore without it.
+RESTIC_PASSWORD=your_secure_password_here
+
+# Snapshot ID to restore (leave empty to restore the latest snapshot)
+RESTIC_RESTORE_SNAPSHOT=
+
+# Log level: debug, info, warning, error
+RESTIC_LOG_LEVEL=info
+
+# Backup schedule (cron format) - default: daily at 1 AM
+BACKUP_CRON_SCHEDULE=0 1 * * *
+
+# Snapshot retention policy
+RESTIC_KEEP_DAILY=7
+RESTIC_KEEP_WEEKLY=4
+RESTIC_KEEP_MONTHLY=12
+RESTIC_KEEP_YEARLY=3
+
+# Local path for backup data
+BACKUP_PATH=./openmrs_backup
+```
+
+### Using the backup-restore.sh script
+
+The `backup-restore.sh` script provides convenient commands for backup and restore operations:
+
+#### Initialize a new backup repository
+
+```bash
+./backup-restore.sh init
+```
+
+This creates a new Restic repository at the location specified in `RESTIC_REPOSITORY`. Only run this once when setting up backups for the first time.
+
+#### Create a manual backup
+
+```bash
+./backup-restore.sh create
+```
+
+This immediately creates a backup of the database and volumes, regardless of the scheduled backup time.
+
+#### List available backup snapshots
+
+```bash
+./backup-restore.sh list
+```
+
+This displays all available backup snapshots with their IDs, dates, and sizes.
+
+#### Restore from a backup
+
+```bash
+./backup-restore.sh restore
+```
+
+This will:
+1. Show a list of available snapshots
+2. Prompt you to select a snapshot (or press Enter for the latest)
+3. Stop the application
+4. Restore the database and volumes from the selected snapshot
+5. Prompt you to start the application again
+
+**Warning**: Restore will replace all current data with the backup data. Ensure you have selected the correct snapshot before proceeding.
+
+#### Start with automatic scheduled backups
+
+```bash
+./backup-restore.sh start
+```
+
+This starts the OpenMRS application with the backup service running in the background. Backups will be created automatically according to the `BACKUP_CRON_SCHEDULE` (default: daily at 1 AM).
+
+### Manual Docker Compose usage
+
+You can also use Docker Compose directly without the manage.sh script:
+
+#### Initialize repository
+
+```bash
+docker compose -f docker-compose-backup.yml run --rm backup init
+```
+
+#### Create backup
+
+```bash
+docker compose -f docker-compose-backup.yml run --rm backup backup
+```
+
+#### List snapshots
+
+```bash
+docker compose -f docker-compose-backup.yml run --rm backup snapshots
+```
+
+#### Restore from backup
+
+```bash
+# Set the snapshot ID to restore (optional - defaults to latest)
+export RESTIC_RESTORE_SNAPSHOT=<snapshot-id>
+
+# Stop the application
+docker compose down
+
+# Start the restore process
+docker compose -f docker-compose.yml -f docker-compose-restore.yml up -d restore
+
+# Monitor restore progress
+docker compose logs -f restore
+
+# After restore completes, start the application
+docker compose up -d
+```
+
+#### Start with automatic backups
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose-backup.yml up -d
+```
+
+### What gets backed up
+
+The backup system backs up:
+- **MariaDB database** - The entire OpenMRS database
+- **Docker volumes** - The `openmrs-data` and `db-data` volumes
+
+These are labeled in `docker-compose.yml`:
+- `backend` service has `restic-compose-backup.volumes: "true"` label
+- `db` service has `restic-compose-backup.mariadb: "true"` label
+
+### Snapshot retention policy
+
+By default, the backup system keeps:
+- 7 daily backups
+- 4 weekly backups
+- 12 monthly backups
+- 3 yearly backups
+
+Older snapshots are automatically pruned according to this policy. Adjust these values in `.env` if needed.
+
+### Backup storage backends
+
+Restic supports multiple storage backends. Configure `RESTIC_REPOSITORY` accordingly:
+
+| Backend | Example Repository Format |
+|---------|--------------------------|
+| Local filesystem | `/path/to/backup` |
+| S3 | `s3:s3.amazonaws.com/bucket-name` |
+| SFTP | `sftp:user@host:/path/to/repo` |
+| REST server | `rest:http://host:8000` |
+| Azure Blob Storage | `azure:container:/path` |
+| Google Cloud Storage | `gs:bucket:/path` |
+| Backblaze B2 | `b2:bucket:/path` |
+
+For S3-compatible services (like MinIO), you may need to set additional environment variables like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+
+### Security considerations
+
+- **Store `RESTIC_PASSWORD` securely** - Without it, you cannot access or restore your backups
+- **Encrypt your backup storage** - If using cloud storage, enable encryption at rest
+- **Test your backups** - Regularly test restore procedures to ensure backups are valid
+- **Monitor backup logs** - Check that scheduled backups are running successfully
+
 ### Running with Grafana
 
 The service can run with Grafana for monitoring logs. You can run it with:

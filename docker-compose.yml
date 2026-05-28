@@ -47,6 +47,8 @@ services:
       start_period: 3m
     volumes:
       - openmrs-data:/openmrs/data
+    labels:
+      restic-compose-backup.volumes: "true"
     build:
       context: .
       dockerfile: Dockerfile
@@ -70,6 +72,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-openmrs}
     volumes:
       - db-data:/var/lib/mysql
+    labels:
+      restic-compose-backup.mariadb: "true"
 
 volumes:
   openmrs-data: ~

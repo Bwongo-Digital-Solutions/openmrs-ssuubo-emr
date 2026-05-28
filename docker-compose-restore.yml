@@ -1,0 +1,24 @@
+services:
+  backend:
+    depends_on:
+      restore:
+        condition: service_completed_successfully
+
+  backup:
+    depends_on:
+      restore:
+        condition: service_completed_successfully
+
+  restore:
+    image: mekomsolutions/restic-compose-backup-restore:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ${BACKUP_PATH:-./openmrs_backup}:/restic_data
+    environment:
+      RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
+      RESTIC_PASSWORD: ${RESTIC_PASSWORD}
+      RESTIC_RESTORE_SNAPSHOT: ${RESTIC_RESTORE_SNAPSHOT}
+      LOG_LEVEL: ${RESTIC_LOG_LEVE}

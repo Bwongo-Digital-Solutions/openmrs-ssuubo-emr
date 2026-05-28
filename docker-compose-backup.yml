@@ -1,0 +1,24 @@
+services:
+  backup:
+    image: mekomsolutions/restic-compose-backup-restore:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ${BACKUP_PATH:-./openmrs_backup}:/restic_data
+      - restic-cache:/cache
+    environment:
+      RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
+      RESTIC_PASSWORD: ${RESTIC_PASSWORD}
+      RESTIC_LOG_LEVEL: ${RESTIC_LOG_LEVEL:-info}
+      # Snapshot retention policy
+      RESTIC_KEEP_DAILY: ${RESTIC_KEEP_DAILY:-7}
+      RESTIC_KEEP_WEEKLY: ${RESTIC_KEEP_WEEKLY:-4}
+      RESTIC_KEEP_MONTHLY: ${RESTIC_KEEP_MONTHLY:-12}
+      RESTIC_KEEP_YEARLY: ${RESTIC_KEEP_YEARLY:-3}
+      # Backup schedule (cron format)
+      CRON_SCHEDULE: ${BACKUP_CRON_SCHEDULE:-0 1 * * *}
+
+volumes:
+  restic-cache:
