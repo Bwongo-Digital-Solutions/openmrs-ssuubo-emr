@@ -27,7 +27,7 @@
   "@clinicemr/esm-patient-scd-chart": {
     "scdEncounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
     "scdLocationUuid": "2be09613-c612-41af-8638-022609c38da8",
-    "registrationEncounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591",
+    "registrationEncounterTypeUuid": "ed91dfb6-ec85-4d0b-a6a3-e5b718710c95",
     "emergencyContactConcepts": {
       "parentGuardianPhone": "768215a6-a10e-4e17-a3b9-0be0172523f5",
       "spousePartnerPhone": "e0498b7c-108e-4195-b5d0-998f87378c9b",
@@ -147,7 +147,7 @@
   },
   "@openmrs/esm-patient-registration-app": {
     "registrationObs": {
-      "encounterTypeUuid": "dd528487-82a5-4082-9c72-ed246bd49591"
+      "encounterTypeUuid": "ed91dfb6-ec85-4d0b-a6a3-e5b718710c95"
     },
     "links": {
       "submitButton": "${openmrsSpaBase}/post-registration/${patientUuid}"
